@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-wheeler-gray-50 dark:bg-wheeler-gray-900 text-wheeler-gray-900 dark:text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center px-4 py-2 bg-wheeler-blue-600 hover:bg-wheeler-blue-700 text-white font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-blue-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-900;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-4 py-2 border border-wheeler-gray-300 dark:border-wheeler-gray-600 text-wheeler-gray-700 dark:text-wheeler-gray-300 bg-white dark:bg-wheeler-gray-800 hover:bg-wheeler-gray-50 dark:hover:bg-wheeler-gray-700 font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-blue-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-900;
+  }
+  
+  .input-primary {
+    @apply block w-full px-3 py-2 text-wheeler-gray-900 dark:text-white placeholder-wheeler-gray-500 dark:placeholder-wheeler-gray-400 bg-white dark:bg-wheeler-gray-800 border border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded-md focus:ring-2 focus:ring-wheeler-blue-500 focus:border-wheeler-blue-500 transition-colors duration-200;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-wheeler-gray-800 rounded-lg shadow-sm border border-wheeler-gray-200 dark:border-wheeler-gray-700;
+  }
+  
+  .text-muted {
+    @apply text-wheeler-gray-600 dark:text-wheeler-gray-400;
+  }
+  
+  .text-accent {
+    @apply text-wheeler-blue-600 dark:text-wheeler-blue-400;
+  }
+  
+  .link-hover {
+    @apply text-wheeler-blue-600 hover:text-wheeler-blue-700 dark:text-wheeler-blue-400 dark:hover:text-wheeler-blue-300 transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.wheeler-gray.400') transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: theme('colors.wheeler-gray.400');
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: theme('colors.wheeler-gray.500');
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-wheeler-blue-500 ring-offset-2 dark:ring-offset-wheeler-gray-900;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
