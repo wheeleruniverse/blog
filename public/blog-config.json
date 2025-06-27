@@ -37,6 +37,13 @@
     },
     {
       "collab": false,
+      "date": "2024-02-06",
+      "name": "New Year, New Cost Savings Opportunities in Cloud Services",
+      "slug": "new-year-new-cloud-cost-savings-opportunities",
+      "source": "https://bravolt.com/post/new-cost-saving-in-cloud-services"
+    },
+    {
+      "collab": false,
       "date": "2024-01-30",
       "name": "Navigating AWS Certifications in 2024",
       "slug": "navigating-aws-certifications-2024",
@@ -48,6 +55,20 @@
       "name": "Parenting vs. Cloud Computing: Overcoming Challenges and Embracing Growth",
       "slug": "parenting-vs-cloud-computing",
       "source": "https://dev.to/aws-builders/parenting-vs-cloud-computing-overcoming-challenges-and-embracing-growth-1i3b"
+    },
+    {
+      "collab": false,
+      "date": "2023-04-03",
+      "name": "Optimizing AWS Cloud Costs: A Two-Phase Approach for Efficiency and Savings",
+      "slug": "optimizing-aws-cloud-costs",
+      "source": "https://bravolt.com/post/optimizing-aws-cloud-costs-a-two-phase-approach-for-efficiency-and-savings"
+    },
+    {
+      "collab": false,
+      "date": "2023-03-08",
+      "name": "Defining AWS Cost Optimization",
+      "slug": "defining-aws-cost-optimization",
+      "source": "https://bravolt.com/post/defining-aws-cost-optimization"
     },
     {
       "collab": false,
@@ -90,6 +111,13 @@
       "name": "GCP Resume",
       "slug": "gcp-resume",
       "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj"
+    },
+    {
+      "collab": true,
+      "date": "2021-07-20",
+      "name": "Our Quest for the Perfect Code Assessment",
+      "slug": "our-quest-for-the-perfect-code-assessment",
+      "source": "https://bravolt.com/post/our-quest-for-the-perfect-code-assessment"
     },
     {
       "collab": false,
@@ -165,7 +193,7 @@
       "collab": false,
       "date": "2020-09-21",
       "name": "AWS COVID ETL",
-      "slug": "aws-covid-etl-cloudguru-challenge",
+      "slug": "aws-covid-etl",
       "source": "https://dev.to/wheeleruniverse/my-september-cloud-guru-challenge-experience-l2j"
     }
   ]
