@@ -1,5 +1,5 @@
 <template>
-  <article 
+  <article
     class="bg-white dark:bg-wheeler-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-6 border border-wheeler-gray-200 dark:border-wheeler-gray-700 animate-slide-up"
   >
     <div class="flex items-start justify-between mb-4">
@@ -7,7 +7,9 @@
         <h2 class="text-xl font-semibold text-wheeler-gray-900 dark:text-white mb-2 leading-tight">
           {{ entry.name }}
         </h2>
-        <div class="flex items-center gap-3 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400">
+        <div
+          class="flex items-center gap-3 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400"
+        >
           <time :datetime="entry.date" class="flex items-center gap-1">
             <CalendarIcon class="w-4 h-4" />
             {{ formatDate(entry.date) }}
@@ -19,16 +21,16 @@
         </div>
       </div>
       <div class="flex items-center gap-2 ml-4">
-        <span 
-          v-if="entry.collab" 
-          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-blue-100 text-wheeler-blue-800 dark:bg-wheeler-blue-900 dark:text-wheeler-blue-200"
+        <span
+          v-if="entry.collab"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
         >
           <UsersIcon class="w-3 h-3 mr-1" />
           Collaboration
         </span>
         <button
           @click="openBlog"
-          class="inline-flex items-center px-4 py-2 bg-wheeler-blue-600 hover:bg-wheeler-blue-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-blue-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800"
+          class="inline-flex items-center px-4 py-2 bg-wheeler-purple-600 hover:bg-wheeler-purple-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800"
           :aria-label="`Read ${entry.name}`"
         >
           Read More
@@ -41,7 +43,12 @@
 
 <script setup lang="ts">
 import type { BlogEntry } from '@/types'
-import { CalendarIcon, LinkIcon, UsersIcon, ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
+import {
+  CalendarIcon,
+  LinkIcon,
+  UsersIcon,
+  ArrowTopRightOnSquareIcon,
+} from '@heroicons/vue/24/outline'
 
 interface Props {
   entry: BlogEntry
@@ -56,7 +63,7 @@ const formatDate = (dateString: string): string => {
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 

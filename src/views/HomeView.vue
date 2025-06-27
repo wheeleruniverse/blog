@@ -1,10 +1,7 @@
 <template>
   <div class="min-h-screen bg-wheeler-gray-50 dark:bg-wheeler-gray-900">
-    <AppHeader 
-      :total-posts="sortedBlogEntries.length"
-      @update:search="updateSearch"
-    />
-    
+    <AppHeader :total-posts="sortedBlogEntries.length" @update:search="updateSearch" />
+
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Hero Section -->
       <div class="text-center mb-12">
@@ -12,8 +9,8 @@
           Technical Insights & Experiences
         </h1>
         <p class="text-xl text-wheeler-gray-600 dark:text-wheeler-gray-400 max-w-3xl mx-auto">
-          Discover articles on cloud computing, software development, and technology leadership 
-          from across the web, curated and organized in one place.
+          Discover articles on cloud computing, software development, and technology leadership from
+          across the web, curated and organized in one place.
         </p>
       </div>
 
@@ -38,11 +35,11 @@
               @update:filters="updateFilters"
             />
           </div>
-          
+
           <div class="lg:col-span-3">
             <!-- Error State -->
-            <div 
-              v-if="error" 
+            <div
+              v-if="error"
               class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mb-6"
             >
               <div class="flex">
@@ -98,25 +95,25 @@ import FilterPanel from '@/components/FilterPanel.vue'
 import BlogList from '@/components/BlogList.vue'
 import type { FilterOptions } from '@/types'
 
-const { 
-  loadBlogData, 
-  loading, 
-  error, 
-  filters, 
-  sortedBlogEntries, 
-  filteredBlogEntries, 
-  availableSources 
+const {
+  loadBlogData,
+  loading,
+  error,
+  filters,
+  sortedBlogEntries,
+  filteredBlogEntries,
+  availableSources,
 } = useBlogData()
 
 const { initializeTheme } = useTheme()
 
 const collaborationCount = computed(() => {
-  return sortedBlogEntries.value.filter(entry => entry.collab === true).length
+  return sortedBlogEntries.value.filter((entry) => entry.collab === true).length
 })
 
 const latestPostDate = computed(() => {
   if (sortedBlogEntries.value.length === 0) return 'N/A'
-  
+
   const latestPost = sortedBlogEntries.value[0]
   // Parse YYYY-MM-DD format directly to avoid timezone issues
   const [year, month, day] = latestPost.date.split('-').map(Number)
@@ -124,7 +121,7 @@ const latestPostDate = computed(() => {
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   })
 })
 

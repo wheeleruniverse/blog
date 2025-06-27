@@ -7,25 +7,25 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: () => import('@/views/HomeView.vue'),
     meta: {
-      title: 'Wheeler Universe Blog'
-    }
+      title: 'Wheeler Universe Blog',
+    },
   },
   {
     path: '/:slug',
     name: 'BlogRedirect',
     component: () => import('@/views/BlogRedirectView.vue'),
     meta: {
-      title: 'Redirecting...'
-    }
+      title: 'Redirecting...',
+    },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('@/views/NotFoundView.vue'),
     meta: {
-      title: 'Page Not Found'
-    }
-  }
+      title: 'Page Not Found',
+    },
+  },
 ]
 
 const router = createRouter({
@@ -37,12 +37,12 @@ const router = createRouter({
     } else if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
     } else {
       return { top: 0 }
     }
-  }
+  },
 })
 
 // Global navigation guards

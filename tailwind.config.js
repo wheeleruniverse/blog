@@ -8,17 +8,41 @@ export default {
   theme: {
     extend: {
       colors: {
-        'wheeler-blue': {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+        'wheeler-purple': {
+          50: '#f7f2ff',
+          100: '#ede4ff',
+          200: '#dccfff',
+          300: '#c4adff',
+          400: '#a784ff',
+          500: '#8b5aff',
+          600: '#7c3aed',
+          700: '#6b21a8',
+          800: '#592c65',
+          900: '#35064f',
+        },
+        'wheeler-coral': {
+          50: '#fef7f5',
+          100: '#fdeee8',
+          200: '#fad8c8',
+          300: '#f6bea2',
+          400: '#f09975',
+          500: '#cb8f76',
+          600: '#b87960',
+          700: '#9e6851',
+          800: '#825547',
+          900: '#6b473e',
+        },
+        'wheeler-pink': {
+          50: '#fdf7f5',
+          100: '#fbeee8',
+          200: '#f6d8c8',
+          300: '#f0bea2',
+          400: '#e89975',
+          500: '#daa396',
+          600: '#c78d7e',
+          700: '#b0786c',
+          800: '#95665b',
+          900: '#7d554d',
         },
         'wheeler-gray': {
           50: '#f9fafb',
@@ -34,11 +58,14 @@ export default {
         }
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        'display': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
         'slide-up': 'slideUp 0.3s ease-out',
+        'twinkle': 'starTwinkle 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -48,6 +75,14 @@ export default {
         slideUp: {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        starTwinkle: {
+          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.1)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-4px)' },
         },
       }
     },

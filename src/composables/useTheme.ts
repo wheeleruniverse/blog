@@ -8,7 +8,7 @@ export function useTheme() {
 
   const initializeTheme = (): void => {
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY)
-    
+
     if (savedTheme) {
       try {
         theme.value = JSON.parse(savedTheme)
@@ -20,13 +20,13 @@ export function useTheme() {
       // Use system preference
       theme.value.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     }
-    
+
     updateDocumentClass()
   }
 
   const updateDocumentClass = (): void => {
     const htmlElement = document.documentElement
-    
+
     if (theme.value.isDark) {
       htmlElement.classList.add('dark')
     } else {
@@ -55,7 +55,7 @@ export function useTheme() {
   // Listen for system theme changes
   onMounted(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    
+
     const handleSystemThemeChange = (e: MediaQueryListEvent): void => {
       // Only update if user hasn't explicitly set a preference
       const hasUserPreference = localStorage.getItem(THEME_STORAGE_KEY)
@@ -65,7 +65,7 @@ export function useTheme() {
     }
 
     mediaQuery.addEventListener('change', handleSystemThemeChange)
-    
+
     // Return cleanup function
     return () => {
       mediaQuery.removeEventListener('change', handleSystemThemeChange)

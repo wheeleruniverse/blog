@@ -23,7 +23,7 @@ export function useBlogData() {
       if (!response.ok) {
         throw new Error(`Failed to load blog data: ${response.statusText}`)
       }
-      
+
       const data: BlogConfig = await response.json()
       blogConfig.value = data
       loading.value = 'success'
@@ -38,7 +38,7 @@ export function useBlogData() {
 
   const sortedBlogEntries = computed((): BlogEntry[] => {
     if (!blogConfig.value?.data) return []
-    
+
     return [...blogConfig.value.data].sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
@@ -50,31 +50,29 @@ export function useBlogData() {
     // Search filter
     if (filters.value.search) {
       const searchTerm = filters.value.search.toLowerCase()
-      entries = entries.filter(entry =>
-        entry.name.toLowerCase().includes(searchTerm)
-      )
+      entries = entries.filter((entry) => entry.name.toLowerCase().includes(searchTerm))
     }
 
     // Date range filter
     if (filters.value.dateFrom) {
-      entries = entries.filter(entry => entry.date >= filters.value.dateFrom)
+      entries = entries.filter((entry) => entry.date >= filters.value.dateFrom)
     }
 
     if (filters.value.dateTo) {
-      entries = entries.filter(entry => entry.date <= filters.value.dateTo)
+      entries = entries.filter((entry) => entry.date <= filters.value.dateTo)
     }
 
     // Source filter
     if (filters.value.sources.length > 0) {
-      entries = entries.filter(entry => {
+      entries = entries.filter((entry) => {
         const domain = new URL(entry.source).hostname
-        return filters.value.sources.some(source => domain.includes(source))
+        return filters.value.sources.some((source) => domain.includes(source))
       })
     }
 
     // Collaboration filter
     if (filters.value.showCollabOnly) {
-      entries = entries.filter(entry => entry.collab === true)
+      entries = entries.filter((entry) => entry.collab === true)
     }
 
     return entries
@@ -82,9 +80,9 @@ export function useBlogData() {
 
   const availableSources = computed((): string[] => {
     if (!blogConfig.value?.data) return []
-    
+
     const sources = new Set<string>()
-    blogConfig.value.data.forEach(entry => {
+    blogConfig.value.data.forEach((entry) => {
       try {
         const domain = new URL(entry.source).hostname
         sources.add(domain)
@@ -92,19 +90,19 @@ export function useBlogData() {
         // Ignore invalid URLs
       }
     })
-    
+
     return Array.from(sources).sort()
   })
 
   const isFeatureEnabled = (featureName: string): boolean => {
     if (!blogConfig.value?.features) return false
-    
-    const feature = blogConfig.value.features.find(f => f.name === featureName)
+
+    const feature = blogConfig.value.features.find((f) => f.name === featureName)
     return feature?.enabled === true
   }
 
   const findBlogBySlug = (slug: string): BlogEntry | undefined => {
-    return blogConfig.value?.data.find(entry => entry.slug === slug)
+    return blogConfig.value?.data.find((entry) => entry.slug === slug)
   }
 
   return {
