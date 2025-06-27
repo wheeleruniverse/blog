@@ -7,9 +7,9 @@
         <!-- Brand Section -->
         <div class="space-y-4">
           <div class="flex items-center space-x-3">
-            <img 
-              src="/wheeler-logo.jpg" 
-              alt="Wheeler Universe Logo" 
+            <img
+              src="/wheeler-logo.jpg"
+              alt="Wheeler Universe Logo"
               class="w-8 h-8 rounded-lg object-cover"
             />
             <div>

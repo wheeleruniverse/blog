@@ -94,6 +94,7 @@ import SearchBar from '@/components/SearchBar.vue'
 import FilterPanel from '@/components/FilterPanel.vue'
 import BlogList from '@/components/BlogList.vue'
 import type { FilterOptions } from '@/types'
+import { formatDate } from '@/utils'
 
 const {
   loadBlogData,
@@ -113,16 +114,8 @@ const collaborationCount = computed(() => {
 
 const latestPostDate = computed(() => {
   if (sortedBlogEntries.value.length === 0) return 'N/A'
-
   const latestPost = sortedBlogEntries.value[0]
-  // Parse YYYY-MM-DD format directly to avoid timezone issues
-  const [year, month, day] = latestPost.date.split('-').map(Number)
-  const date = new Date(year, month - 1, day) // month is 0-indexed
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
+  return formatDate(latestPost.date, 'en-US')
 })
 
 const updateSearch = (searchTerm: string) => {

@@ -49,6 +49,7 @@ import {
   UsersIcon,
   ArrowTopRightOnSquareIcon,
 } from '@heroicons/vue/24/outline'
+import { formatDate, getDomainFromUrl } from '@/utils'
 
 interface Props {
   entry: BlogEntry
@@ -56,24 +57,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const formatDate = (dateString: string): string => {
-  // Parse YYYY-MM-DD format directly to avoid timezone issues
-  const [year, month, day] = dateString.split('-').map(Number)
-  const date = new Date(year, month - 1, day) // month is 0-indexed
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
-
-const getSourceDomain = (url: string): string => {
-  try {
-    return new URL(url).hostname.replace('www.', '')
-  } catch {
-    return 'External Link'
-  }
-}
+const getSourceDomain = getDomainFromUrl
 
 const openBlog = (): void => {
   window.open(props.entry.source, '_blank', 'noopener,noreferrer')

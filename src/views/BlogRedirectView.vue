@@ -91,10 +91,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline'"
+import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 import { useBlogData } from '@/composables/useBlogData'
 import { useTheme } from '@/composables/useTheme'
 import type { BlogEntry } from '@/types'
+import { formatDate, getDomainFromUrl } from '@/utils'
 
 const route = useRoute()
 const { loadBlogData, findBlogBySlug, loading, error } = useBlogData()
@@ -105,24 +106,7 @@ const countdown = ref(5)
 let redirectTimer: number | undefined
 let countdownTimer: number | undefined
 
-const formatDate = (dateString: string): string => {
-  // Parse YYYY-MM-DD format directly to avoid timezone issues
-  const [year, month, day] = dateString.split('-').map(Number)
-  const date = new Date(year, month - 1, day) // month is 0-indexed
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
-
-const getSourceDomain = (url: string): string => {
-  try {
-    return new URL(url).hostname.replace('www.', '')
-  } catch {
-    return 'External Link'
-  }
-}
+const getSourceDomain = getDomainFromUrl
 
 const redirectNow = (): void => {
   if (blogEntry.value) {

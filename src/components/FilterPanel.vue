@@ -149,6 +149,7 @@
 import { computed, watch } from 'vue'
 import type { FilterOptions } from '@/types'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { formatDate } from '@/utils'
 
 interface Props {
   filters: FilterOptions
@@ -175,17 +176,6 @@ const hasActiveFilters = computed(() => {
     localFilters.value.showCollabOnly
   )
 })
-
-const formatDate = (dateString: string): string => {
-  // Parse YYYY-MM-DD format directly to avoid timezone issues
-  const [year, month, day] = dateString.split('-').map(Number)
-  const date = new Date(year, month - 1, day) // month is 0-indexed
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
 
 const clearAllFilters = () => {
   localFilters.value = {
