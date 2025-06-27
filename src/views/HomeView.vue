@@ -118,7 +118,10 @@ const latestPostDate = computed(() => {
   if (sortedBlogEntries.value.length === 0) return 'N/A'
   
   const latestPost = sortedBlogEntries.value[0]
-  return new Date(latestPost.date).toLocaleDateString('en-US', {
+  // Parse YYYY-MM-DD format directly to avoid timezone issues
+  const [year, month, day] = latestPost.date.split('-').map(Number)
+  const date = new Date(year, month - 1, day) // month is 0-indexed
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
