@@ -149,7 +149,7 @@ const initializeRedirect = async (): Promise<void> => {
       // Start automatic redirect countdown
       redirectTimer = setTimeout(() => {
         redirectNow()
-      }, 9000)
+      }, 5000)
 
       startCountdown()
     } else {
