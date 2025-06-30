@@ -29,6 +29,15 @@
           Collaboration
         </span>
         <button
+          @click="copyLocalUrl"
+          class="inline-flex items-center px-3 py-2 text-wheeler-gray-600 hover:text-wheeler-purple-600 dark:text-wheeler-gray-400 dark:hover:text-wheeler-purple-400 hover:bg-wheeler-gray-100 dark:hover:bg-wheeler-gray-700 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800"
+          :aria-label="`Copy link to ${entry.name}`"
+          :title="copyButtonTitle"
+        >
+          <ClipboardIcon v-if="!showCopiedFeedback" class="w-4 h-4" />
+          <CheckIcon v-else class="w-4 h-4" />
+        </button>
+        <button
           @click="openBlog"
           class="inline-flex items-center px-4 py-2 bg-wheeler-purple-600 hover:bg-wheeler-purple-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800"
           :aria-label="`Read ${entry.name}`"
@@ -42,12 +51,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import type { BlogEntry } from '@/types'
 import {
   CalendarIcon,
   LinkIcon,
   UsersIcon,
   ArrowTopRightOnSquareIcon,
+  ClipboardIcon,
+  CheckIcon,
 } from '@heroicons/vue/24/outline'
 import { formatDate, getDomainFromUrl } from '@/utils'
 
@@ -56,10 +69,44 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const router = useRouter()
 
 const getSourceDomain = getDomainFromUrl
+const showCopiedFeedback = ref(false)
+
+const copyButtonTitle = computed(() => 
+  showCopiedFeedback.value ? 'Copied!' : 'Copy local link'
+)
 
 const openBlog = (): void => {
-  window.open(props.entry.source, '_blank', 'noopener,noreferrer')
+  router.push(`/${props.entry.slug}`)
+}
+
+const copyLocalUrl = async (): Promise<void> => {
+  try {
+    const localUrl = `${window.location.origin}/${props.entry.slug}`
+    await navigator.clipboard.writeText(localUrl)
+    
+    // Show feedback
+    showCopiedFeedback.value = true
+    setTimeout(() => {
+      showCopiedFeedback.value = false
+    }, 2000)
+  } catch (err) {
+    console.error('Failed to copy URL:', err)
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea')
+    textarea.value = `${window.location.origin}/${props.entry.slug}`
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textarea)
+    
+    // Show feedback
+    showCopiedFeedback.value = true
+    setTimeout(() => {
+      showCopiedFeedback.value = false
+    }, 2000)
+  }
 }
 </script>

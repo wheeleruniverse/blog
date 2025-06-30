@@ -14,10 +14,12 @@
 
       <!-- Blog Found -->
       <div v-else-if="blogEntry && !error" class="space-y-6">
-        <div
-          class="w-16 h-16 bg-wheeler-purple-600 rounded-full flex items-center justify-center mx-auto"
-        >
-          <ArrowTopRightOnSquareIcon class="w-8 h-8 text-white" />
+        <div class="w-20 h-20 mx-auto">
+          <img 
+            src="/wheeler-logo.jpg" 
+            alt="Wheeler Universe Logo" 
+            class="w-full h-full rounded-full object-cover border-4 border-wheeler-purple-600"
+          />
         </div>
 
         <div class="space-y-3">
@@ -45,7 +47,6 @@
               class="inline-flex items-center px-4 py-2 bg-wheeler-purple-600 hover:bg-wheeler-purple-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-900"
             >
               Go Now
-              <ArrowTopRightOnSquareIcon class="w-4 h-4 ml-1" />
             </button>
             <router-link
               to="/"
@@ -94,7 +95,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 import { useBlogData } from '@/composables/useBlogData'
 import type { BlogEntry } from '@/types'
 import { formatDate, getDomainFromUrl } from '@/utils'
@@ -105,7 +106,7 @@ const { loadBlogData, findBlogBySlug } = useBlogData()
 // Theme is now initialized at app level
 
 const blogEntry = ref<BlogEntry | null>(null)
-const countdown = ref(5)
+const countdown = ref(9)
 const loading = ref(true)
 const error = ref(false)
 let redirectTimer: ReturnType<typeof setTimeout> | undefined
@@ -148,7 +149,7 @@ const initializeRedirect = async (): Promise<void> => {
       // Start automatic redirect countdown
       redirectTimer = setTimeout(() => {
         redirectNow()
-      }, 5000)
+      }, 9000)
 
       startCountdown()
     } else {
