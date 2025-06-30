@@ -119,7 +119,7 @@ const { loadBlogData, findBlogBySlug } = useBlogData();
 // Theme is now initialized at app level
 
 const blogEntry = ref<BlogEntry | null>(null);
-const countdown = ref(9);
+const countdown = ref(5);
 const loading = ref(true);
 const error = ref(false);
 let redirectTimer: ReturnType<typeof setTimeout> | undefined;
