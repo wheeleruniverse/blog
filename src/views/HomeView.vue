@@ -1,16 +1,24 @@
 <template>
   <div class="min-h-screen bg-wheeler-gray-50 dark:bg-wheeler-gray-900">
-    <AppHeader :total-posts="sortedBlogEntries.length" @update:search="updateSearch" />
+    <AppHeader
+      :total-posts="sortedBlogEntries.length"
+      @update:search="updateSearch"
+    />
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Hero Section -->
       <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-wheeler-gray-900 dark:text-white mb-4">
+        <h1
+          class="text-4xl font-bold text-wheeler-gray-900 dark:text-white mb-4"
+        >
           Technical Insights & Experiences
         </h1>
-        <p class="text-xl text-wheeler-gray-600 dark:text-wheeler-gray-400 max-w-3xl mx-auto">
-          Discover articles on cloud computing, software development, and technology leadership from
-          across the web, curated and organized in one place.
+        <p
+          class="text-xl text-wheeler-gray-600 dark:text-wheeler-gray-400 max-w-3xl mx-auto"
+        >
+          Discover articles on cloud computing, software development, and
+          technology leadership from across the web, curated and organized in
+          one place.
         </p>
       </div>
 
@@ -43,9 +51,13 @@
               class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 mb-6"
             >
               <div class="flex">
-                <ExclamationTriangleIcon class="h-5 w-5 text-red-400 dark:text-red-300" />
+                <ExclamationTriangleIcon
+                  class="h-5 w-5 text-red-400 dark:text-red-300"
+                />
                 <div class="ml-3">
-                  <h3 class="text-sm font-medium text-red-800 dark:text-red-200">
+                  <h3
+                    class="text-sm font-medium text-red-800 dark:text-red-200"
+                  >
                     Error Loading Blog Data
                   </h3>
                   <p class="mt-1 text-sm text-red-700 dark:text-red-300">
@@ -84,16 +96,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from 'vue'
-import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
-import { useBlogData } from '@/composables/useBlogData'
-import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from '@/components/AppFooter.vue'
-import SearchBar from '@/components/SearchBar.vue'
-import FilterPanel from '@/components/FilterPanel.vue'
-import BlogList from '@/components/BlogList.vue'
-import type { FilterOptions } from '@/types'
-import { formatDate } from '@/utils'
+import { onMounted, computed } from 'vue';
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
+import { useBlogData } from '@/composables/useBlogData';
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
+import SearchBar from '@/components/SearchBar.vue';
+import FilterPanel from '@/components/FilterPanel.vue';
+import BlogList from '@/components/BlogList.vue';
+import type { FilterOptions } from '@/types';
+import { formatDate } from '@/utils';
 
 const {
   loadBlogData,
@@ -103,27 +115,27 @@ const {
   sortedBlogEntries,
   filteredBlogEntries,
   availableSources,
-} = useBlogData()
+} = useBlogData();
 
 // Theme is now initialized at app level
 
 const collaborationCount = computed(() => {
-  return sortedBlogEntries.value.filter((entry) => entry.collab === true).length
-})
+  return sortedBlogEntries.value.filter(entry => entry.collab === true).length;
+});
 
 const latestPostDate = computed(() => {
-  if (sortedBlogEntries.value.length === 0) return 'N/A'
-  const latestPost = sortedBlogEntries.value[0]
-  return formatDate(latestPost.date, 'en-US')
-})
+  if (sortedBlogEntries.value.length === 0) return 'N/A';
+  const latestPost = sortedBlogEntries.value[0];
+  return formatDate(latestPost.date, 'en-US');
+});
 
 const updateSearch = (searchTerm: string) => {
-  filters.value.search = searchTerm
-}
+  filters.value.search = searchTerm;
+};
 
 const updateFilters = (newFilters: FilterOptions) => {
-  Object.assign(filters.value, newFilters)
-}
+  Object.assign(filters.value, newFilters);
+};
 
 const clearAllFilters = () => {
   filters.value = {
@@ -132,15 +144,15 @@ const clearAllFilters = () => {
     dateTo: '',
     sources: [],
     showCollabOnly: false,
-  }
-}
+  };
+};
 
 const retryLoad = () => {
-  loadBlogData()
-}
+  loadBlogData();
+};
 
 onMounted(async () => {
   // Theme initialization moved to App.vue
-  await loadBlogData()
-})
+  await loadBlogData();
+});
 </script>

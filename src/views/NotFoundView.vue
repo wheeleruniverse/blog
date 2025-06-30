@@ -8,13 +8,16 @@
         <div
           class="w-20 h-20 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded-full flex items-center justify-center mx-auto"
         >
-          <span class="text-3xl font-bold text-wheeler-gray-600 dark:text-wheeler-gray-400"
+          <span
+            class="text-3xl font-bold text-wheeler-gray-600 dark:text-wheeler-gray-400"
             >404</span
           >
         </div>
 
         <div class="space-y-3">
-          <h1 class="text-3xl font-bold text-wheeler-gray-900 dark:text-white">Page Not Found</h1>
+          <h1 class="text-3xl font-bold text-wheeler-gray-900 dark:text-white">
+            Page Not Found
+          </h1>
           <p class="text-lg text-wheeler-gray-600 dark:text-wheeler-gray-400">
             The page you're looking for doesn't exist.
           </p>
@@ -28,15 +31,23 @@
             ← Back to Home
           </router-link>
 
-          <div class="text-sm text-wheeler-gray-500 dark:text-wheeler-gray-400 space-y-2">
+          <div
+            class="text-sm text-wheeler-gray-500 dark:text-wheeler-gray-400 space-y-2"
+          >
             <p>Looking for a specific blog post?</p>
-            <p>Try browsing our complete collection or use the search feature.</p>
+            <p>
+              Try browsing our complete collection or use the search feature.
+            </p>
           </div>
         </div>
 
         <!-- Helpful Links -->
-        <div class="pt-6 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700">
-          <h3 class="text-sm font-medium text-wheeler-gray-900 dark:text-white mb-3">
+        <div
+          class="pt-6 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700"
+        >
+          <h3
+            class="text-sm font-medium text-wheeler-gray-900 dark:text-white mb-3"
+          >
             Popular Topics
           </h3>
           <div class="flex flex-wrap gap-2 justify-center">
@@ -66,12 +77,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from 'vue';
 
 // Theme is now initialized at app level
 
 onMounted(() => {
   // Theme initialization moved to App.vue
-  document.title = 'Page Not Found - Wheeler Universe'
-})
+  document.title = 'Page Not Found - Wheeler Universe';
+});
 </script>

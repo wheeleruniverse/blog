@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -26,31 +26,31 @@ const routes: RouteRecordRaw[] = [
       title: 'Page Not Found',
     },
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     } else if (to.hash) {
       return {
         el: to.hash,
         behavior: 'smooth',
-      }
+      };
     } else {
-      return { top: 0 }
+      return { top: 0 };
     }
   },
-})
+});
 
 // Global navigation guards
-router.beforeEach((to) => {
+router.beforeEach(to => {
   // Update document title
   if (to.meta.title) {
-    document.title = to.meta.title as string
+    document.title = to.meta.title as string;
   }
-})
+});
 
-export default router
+export default router;

@@ -13,13 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
-import { useTheme } from '@/composables/useTheme'
+import { computed } from 'vue';
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline';
+import { useTheme } from '@/composables/useTheme';
 
-const { theme, toggleTheme } = useTheme()
+const { theme, toggleTheme } = useTheme();
 
-const isDark = computed(() => theme.value.isDark)
+const isDark = computed(() => theme.value.isDark);
 </script>
 
 <style scoped>

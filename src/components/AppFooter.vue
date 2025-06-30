@@ -13,14 +13,19 @@
               class="w-8 h-8 rounded-lg object-cover"
             />
             <div>
-              <h3 class="text-lg font-bold text-wheeler-gray-900 dark:text-white">
+              <h3
+                class="text-lg font-bold text-wheeler-gray-900 dark:text-white"
+              >
                 Wheeler Universe
               </h3>
             </div>
           </div>
-          <p class="text-wheeler-gray-600 dark:text-wheeler-gray-400 text-sm leading-relaxed">
-            Aggregating technical insights and experiences from across the web. Explore articles on
-            cloud computing, software development, and technology leadership.
+          <p
+            class="text-wheeler-gray-600 dark:text-wheeler-gray-400 text-sm leading-relaxed"
+          >
+            Aggregating technical insights and experiences from across the web.
+            Explore articles on cloud computing, software development, and
+            technology leadership.
           </p>
         </div>
 
@@ -31,7 +36,9 @@
           >
             Blog Stats
           </h4>
-          <div class="space-y-2 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400">
+          <div
+            class="space-y-2 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400"
+          >
             <div class="flex justify-between">
               <span>Total Posts:</span>
               <span class="font-medium">{{ totalPosts }}</span>
@@ -103,10 +110,15 @@
       </div>
 
       <!-- Bottom Bar -->
-      <div class="mt-8 pt-6 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700">
-        <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
+      <div
+        class="mt-8 pt-6 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700"
+      >
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0"
+        >
           <p class="text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400">
-            &copy; {{ currentYear }} Wheeler Universe. Built with Vue 3 & TypeScript.
+            &copy; {{ currentYear }} Wheeler Universe. Built with Vue 3 &
+            TypeScript.
           </p>
           <div
             class="flex items-center space-x-4 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400"
@@ -126,13 +138,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 interface Props {
-  totalPosts?: number
-  collaborationCount?: number
-  sourceCount?: number
-  latestPostDate?: string
+  totalPosts?: number;
+  collaborationCount?: number;
+  sourceCount?: number;
+  latestPostDate?: string;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -140,18 +152,18 @@ withDefaults(defineProps<Props>(), {
   collaborationCount: 0,
   sourceCount: 0,
   latestPostDate: 'N/A',
-})
+});
 
-const currentYear = computed(() => new Date().getFullYear())
+const currentYear = computed(() => new Date().getFullYear());
 const lastUpdated = computed(() =>
   new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   })
-)
+);
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 </script>

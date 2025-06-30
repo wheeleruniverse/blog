@@ -3,7 +3,9 @@
     class="bg-white dark:bg-wheeler-gray-800 rounded-lg shadow-sm border border-wheeler-gray-200 dark:border-wheeler-gray-700 p-6"
   >
     <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-medium text-wheeler-gray-900 dark:text-white">Filters</h3>
+      <h3 class="text-lg font-medium text-wheeler-gray-900 dark:text-white">
+        Filters
+      </h3>
       <button
         v-if="hasActiveFilters"
         @click="clearAllFilters"
@@ -53,14 +55,20 @@
           Source
         </label>
         <div class="space-y-2 max-h-32 overflow-y-auto">
-          <label v-for="source in availableSources" :key="source" class="flex items-center">
+          <label
+            v-for="source in availableSources"
+            :key="source"
+            class="flex items-center"
+          >
             <input
               v-model="localFilters.sources"
               :value="source"
               type="checkbox"
               class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
             />
-            <span class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300">
+            <span
+              class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+            >
               {{ source }}
             </span>
           </label>
@@ -75,7 +83,9 @@
             type="checkbox"
             class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
           />
-          <span class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300">
+          <span
+            class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+          >
             Show collaborations only
           </span>
         </label>
@@ -86,7 +96,9 @@
         v-if="hasActiveFilters"
         class="pt-4 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700"
       >
-        <h4 class="text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2">
+        <h4
+          class="text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
+        >
           Active Filters:
         </h4>
         <div class="flex flex-wrap gap-2">
@@ -146,27 +158,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
-import type { FilterOptions } from '@/types'
-import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { formatDate } from '@/utils'
+import { computed, watch } from 'vue';
+import type { FilterOptions } from '@/types';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
+import { formatDate } from '@/utils';
 
 interface Props {
-  filters: FilterOptions
-  availableSources: string[]
+  filters: FilterOptions;
+  availableSources: string[];
 }
 
 interface Emits {
-  (e: 'update:filters', filters: FilterOptions): void
+  (e: 'update:filters', filters: FilterOptions): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const localFilters = computed({
   get: () => props.filters,
   set: (value: FilterOptions) => emit('update:filters', value),
-})
+});
 
 const hasActiveFilters = computed(() => {
   return !!(
@@ -174,8 +186,8 @@ const hasActiveFilters = computed(() => {
     localFilters.value.dateTo ||
     localFilters.value.sources.length > 0 ||
     localFilters.value.showCollabOnly
-  )
-})
+  );
+});
 
 const clearAllFilters = () => {
   localFilters.value = {
@@ -184,22 +196,24 @@ const clearAllFilters = () => {
     dateTo: '',
     sources: [],
     showCollabOnly: false,
-  }
-}
+  };
+};
 
 const removeSource = (sourceToRemove: string) => {
   localFilters.value = {
     ...localFilters.value,
-    sources: localFilters.value.sources.filter((source) => source !== sourceToRemove),
-  }
-}
+    sources: localFilters.value.sources.filter(
+      source => source !== sourceToRemove
+    ),
+  };
+};
 
 // Watch for changes and emit updates
 watch(
   localFilters,
-  (newFilters) => {
-    emit('update:filters', newFilters)
+  newFilters => {
+    emit('update:filters', newFilters);
   },
   { deep: true }
-)
+);
 </script>

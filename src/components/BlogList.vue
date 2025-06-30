@@ -6,7 +6,9 @@
         Showing {{ filteredEntries.length }} of {{ totalEntries }} blog posts
       </p>
       <div v-if="hasActiveFilters" class="flex items-center gap-2">
-        <span class="text-sm text-wheeler-gray-500 dark:text-wheeler-gray-400">Filters active</span>
+        <span class="text-sm text-wheeler-gray-500 dark:text-wheeler-gray-400"
+          >Filters active</span
+        >
         <button
           @click="clearFilters"
           class="text-sm text-wheeler-purple-600 hover:text-wheeler-purple-700 dark:text-wheeler-purple-400 dark:hover:text-wheeler-purple-300 underline"
@@ -32,11 +34,14 @@
         <MagnifyingGlassIcon
           class="mx-auto h-12 w-12 text-wheeler-gray-400 dark:text-wheeler-gray-500"
         />
-        <h3 class="mt-4 text-lg font-medium text-wheeler-gray-900 dark:text-white">
+        <h3
+          class="mt-4 text-lg font-medium text-wheeler-gray-900 dark:text-white"
+        >
           No posts found
         </h3>
         <p class="mt-2 text-wheeler-gray-600 dark:text-wheeler-gray-400">
-          Try adjusting your filters or search terms to find what you're looking for.
+          Try adjusting your filters or search terms to find what you're looking
+          for.
         </p>
         <button
           @click="clearFilters"
@@ -55,10 +60,16 @@
         class="bg-white dark:bg-wheeler-gray-800 rounded-lg shadow-md p-6 border border-wheeler-gray-200 dark:border-wheeler-gray-700 animate-pulse"
       >
         <div class="space-y-4">
-          <div class="h-6 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-3/4"></div>
+          <div
+            class="h-6 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-3/4"
+          ></div>
           <div class="flex gap-4">
-            <div class="h-4 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-24"></div>
-            <div class="h-4 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-32"></div>
+            <div
+              class="h-4 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-24"
+            ></div>
+            <div
+              class="h-4 bg-wheeler-gray-200 dark:bg-wheeler-gray-700 rounded w-32"
+            ></div>
           </div>
         </div>
       </div>
@@ -67,26 +78,26 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import type { BlogEntry, FilterOptions } from '@/types'
-import BlogCard from './BlogCard.vue'
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
+import { computed } from 'vue';
+import type { BlogEntry, FilterOptions } from '@/types';
+import BlogCard from './BlogCard.vue';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
 
 interface Props {
-  entries: BlogEntry[]
-  totalEntries: number
-  filters: FilterOptions
-  loading: boolean
+  entries: BlogEntry[];
+  totalEntries: number;
+  filters: FilterOptions;
+  loading: boolean;
 }
 
 interface Emits {
-  (e: 'clear-filters'): void
+  (e: 'clear-filters'): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const filteredEntries = computed(() => props.entries)
+const filteredEntries = computed(() => props.entries);
 
 const hasActiveFilters = computed(() => {
   return !!(
@@ -95,10 +106,10 @@ const hasActiveFilters = computed(() => {
     props.filters.dateTo ||
     props.filters.sources.length > 0 ||
     props.filters.showCollabOnly
-  )
-})
+  );
+});
 
 const clearFilters = () => {
-  emit('clear-filters')
-}
+  emit('clear-filters');
+};
 </script>

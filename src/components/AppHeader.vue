@@ -18,7 +18,9 @@
             />
             <div>
               <h1 class="text-xl font-bold">Wheeler Universe</h1>
-              <p class="text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400 -mt-1">
+              <p
+                class="text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400 -mt-1"
+              >
                 Blog Aggregator
               </p>
             </div>
@@ -72,37 +74,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
-import SearchBar from './SearchBar.vue'
-import ThemeToggle from './ThemeToggle.vue'
+import { ref, computed } from 'vue';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+import SearchBar from './SearchBar.vue';
+import ThemeToggle from './ThemeToggle.vue';
 
 interface Props {
-  totalPosts?: number
-  showMobileSearch?: boolean
-  showDesktopSearch?: boolean
+  totalPosts?: number;
+  showMobileSearch?: boolean;
+  showDesktopSearch?: boolean;
 }
 
 interface Emits {
-  (e: 'update:search', value: string): void
+  (e: 'update:search', value: string): void;
 }
 
 withDefaults(defineProps<Props>(), {
   totalPosts: 0,
   showMobileSearch: true,
   showDesktopSearch: true,
-})
+});
 
-const emit = defineEmits<Emits>()
+const emit = defineEmits<Emits>();
 
-const showMobileSearchBar = ref(false)
+const showMobileSearchBar = ref(false);
 
 const searchQuery = computed({
   get: () => '',
   set: (value: string) => emit('update:search', value),
-})
+});
 
 const toggleMobileSearch = () => {
-  showMobileSearchBar.value = !showMobileSearchBar.value
-}
+  showMobileSearchBar.value = !showMobileSearchBar.value;
+};
 </script>
