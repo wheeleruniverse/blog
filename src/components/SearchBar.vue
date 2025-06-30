@@ -72,7 +72,7 @@ const clearSearch = () => {
 }
 
 // Debounce search input for better performance
-let debounceTimer: number | undefined
+let debounceTimer: ReturnType<typeof setTimeout> | undefined
 
 watch(searchQuery, () => {
   if (debounceTimer) {

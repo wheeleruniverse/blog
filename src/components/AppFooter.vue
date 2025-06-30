@@ -135,7 +135,7 @@ interface Props {
   latestPostDate?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   totalPosts: 0,
   collaborationCount: 0,
   sourceCount: 0,

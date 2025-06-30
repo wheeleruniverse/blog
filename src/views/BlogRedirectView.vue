@@ -103,8 +103,8 @@ const { initializeTheme } = useTheme()
 
 const blogEntry = ref<BlogEntry | null>(null)
 const countdown = ref(5)
-let redirectTimer: number | undefined
-let countdownTimer: number | undefined
+let redirectTimer: ReturnType<typeof setTimeout> | undefined
+let countdownTimer: ReturnType<typeof setInterval> | undefined
 
 const getSourceDomain = getDomainFromUrl
 

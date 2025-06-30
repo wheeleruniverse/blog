@@ -87,7 +87,7 @@ interface Emits {
   (e: 'update:search', value: string): void
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   totalPosts: 0,
   showMobileSearch: true,
   showDesktopSearch: true,
