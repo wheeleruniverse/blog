@@ -70,6 +70,9 @@
           <p class="text-wheeler-gray-600 dark:text-wheeler-gray-400">
             The blog post you're looking for doesn't exist or may have been moved.
           </p>
+          <p class="text-sm text-wheeler-gray-500 dark:text-wheeler-gray-400">
+            Redirecting to home page in 3 seconds...
+          </p>
         </div>
 
         <div class="space-y-3">
@@ -90,19 +93,21 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ArrowTopRightOnSquareIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 import { useBlogData } from '@/composables/useBlogData'
-import { useTheme } from '@/composables/useTheme'
 import type { BlogEntry } from '@/types'
 import { formatDate, getDomainFromUrl } from '@/utils'
 
 const route = useRoute()
-const { loadBlogData, findBlogBySlug, loading, error } = useBlogData()
-const { initializeTheme } = useTheme()
+const router = useRouter()
+const { loadBlogData, findBlogBySlug } = useBlogData()
+// Theme is now initialized at app level
 
 const blogEntry = ref<BlogEntry | null>(null)
 const countdown = ref(5)
+const loading = ref(true)
+const error = ref(false)
 let redirectTimer: ReturnType<typeof setTimeout> | undefined
 let countdownTimer: ReturnType<typeof setInterval> | undefined
 
@@ -110,7 +115,7 @@ const getSourceDomain = getDomainFromUrl
 
 const redirectNow = (): void => {
   if (blogEntry.value) {
-    window.open(blogEntry.value.source, '_blank', 'noopener,noreferrer')
+    window.open(blogEntry.value.source, '_self', 'noopener,noreferrer')
   }
 }
 
@@ -125,31 +130,51 @@ const startCountdown = (): void => {
 }
 
 const initializeRedirect = async (): Promise<void> => {
-  const slug = route.params.slug as string
+  try {
+    loading.value = true
+    const slug = route.params.slug as string
 
-  // Load blog data if not already loaded
-  await loadBlogData()
+    // Load blog data if not already loaded
+    await loadBlogData()
 
-  // Find the blog entry
-  const entry = findBlogBySlug(slug)
+    // Find the blog entry
+    const entry = findBlogBySlug(slug)
 
-  if (entry) {
-    blogEntry.value = entry
-    document.title = `${entry.name} - Wheeler Universe`
+    if (entry) {
+      blogEntry.value = entry
+      document.title = `${entry.name} - Wheeler Universe`
+      loading.value = false
 
-    // Start automatic redirect countdown
-    redirectTimer = setTimeout(() => {
-      redirectNow()
-    }, 5000)
+      // Start automatic redirect countdown
+      redirectTimer = setTimeout(() => {
+        redirectNow()
+      }, 5000)
 
-    startCountdown()
-  } else {
-    document.title = 'Blog Post Not Found - Wheeler Universe'
+      startCountdown()
+    } else {
+      document.title = 'Blog Post Not Found - Wheeler Universe'
+      loading.value = false
+      error.value = true
+      
+      // Redirect to home page after 3 seconds
+      setTimeout(() => {
+        router.push('/')
+      }, 3000)
+    }
+  } catch (err) {
+    loading.value = false
+    error.value = true
+    console.error('Failed to load blog data:', err)
+    
+    // Redirect to home page after 3 seconds on error
+    setTimeout(() => {
+      router.push('/')
+    }, 3000)
   }
 }
 
 onMounted(async () => {
-  initializeTheme()
+  // Theme initialization moved to App.vue
   await initializeRedirect()
 })
 

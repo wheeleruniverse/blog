@@ -87,7 +87,6 @@
 import { onMounted, computed } from 'vue'
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 import { useBlogData } from '@/composables/useBlogData'
-import { useTheme } from '@/composables/useTheme'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import SearchBar from '@/components/SearchBar.vue'
@@ -106,7 +105,7 @@ const {
   availableSources,
 } = useBlogData()
 
-const { initializeTheme } = useTheme()
+// Theme is now initialized at app level
 
 const collaborationCount = computed(() => {
   return sortedBlogEntries.value.filter((entry) => entry.collab === true).length
@@ -141,7 +140,7 @@ const retryLoad = () => {
 }
 
 onMounted(async () => {
-  initializeTheme()
+  // Theme initialization moved to App.vue
   await loadBlogData()
 })
 </script>

@@ -5,7 +5,15 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { useTheme } from '@/composables/useTheme'
+
 // Global app setup
+const { initializeTheme } = useTheme()
+
+onMounted(() => {
+  initializeTheme()
+})
 </script>
 
 <style>

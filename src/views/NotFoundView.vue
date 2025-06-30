@@ -67,12 +67,11 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useTheme } from '@/composables/useTheme'
 
-const { initializeTheme } = useTheme()
+// Theme is now initialized at app level
 
 onMounted(() => {
-  initializeTheme()
+  // Theme initialization moved to App.vue
   document.title = 'Page Not Found - Wheeler Universe'
 })
 </script>
