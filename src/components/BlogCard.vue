@@ -4,11 +4,12 @@
   >
     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
       <div class="flex-1 min-w-0">
-        <h2
-          class="text-lg sm:text-xl font-semibold text-wheeler-gray-900 dark:text-white mb-2 leading-tight break-words"
+        <a
+          :href="`/${entry.slug}`"
+          class="text-lg sm:text-xl font-semibold text-wheeler-gray-900 dark:text-white mb-2 leading-tight break-words hover:text-wheeler-purple-600 dark:hover:text-wheeler-purple-400 transition-colors duration-200 block"
         >
           {{ entry.name }}
-        </h2>
+        </a>
         <div
           class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-sm text-wheeler-gray-600 dark:text-wheeler-gray-400"
         >
@@ -40,14 +41,14 @@
             <ClipboardIcon v-if="!showCopiedFeedback" class="w-4 h-4" />
             <CheckIcon v-else class="w-4 h-4" />
           </button>
-          <button
-            @click="openBlog"
+          <a
+            :href="`/${entry.slug}`"
             class="inline-flex items-center justify-center px-4 py-2 bg-wheeler-purple-600 hover:bg-wheeler-purple-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800 flex-1 sm:flex-none"
             :aria-label="`Read ${entry.name}`"
           >
             <span class="sm:mr-1">Read More</span>
             <ArrowTopRightOnSquareIcon class="w-4 h-4 hidden sm:inline" />
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -56,7 +57,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import type { BlogEntry } from '@/types';
 import {
   CalendarIcon,
@@ -73,7 +73,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const router = useRouter();
 
 const getSourceDomain = getDomainFromUrl;
 const showCopiedFeedback = ref(false);
@@ -81,10 +80,6 @@ const showCopiedFeedback = ref(false);
 const copyButtonTitle = computed(() =>
   showCopiedFeedback.value ? 'Copied!' : 'Copy local link'
 );
-
-const openBlog = (): void => {
-  router.push(`/${props.entry.slug}`);
-};
 
 const copyLocalUrl = async (): Promise<void> => {
   try {
@@ -113,4 +108,5 @@ const copyLocalUrl = async (): Promise<void> => {
     }, 2000);
   }
 };
+
 </script>
