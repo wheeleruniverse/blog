@@ -5,7 +5,9 @@
     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
       <div class="flex-1 min-w-0">
         <h2
-          class="text-lg sm:text-xl font-semibold text-wheeler-gray-900 dark:text-white mb-2 leading-tight break-words"
+          class="text-lg sm:text-xl font-semibold text-wheeler-gray-900 dark:text-white mb-2 leading-tight break-words cursor-pointer hover:text-wheeler-purple-600 dark:hover:text-wheeler-purple-400 transition-colors duration-200"
+          @click="openBlog"
+          @contextmenu="handleTitleRightClick"
         >
           {{ entry.name }}
         </h2>
@@ -42,6 +44,7 @@
           </button>
           <button
             @click="openBlog"
+            @contextmenu="handleReadMoreRightClick"
             class="inline-flex items-center justify-center px-4 py-2 bg-wheeler-purple-600 hover:bg-wheeler-purple-700 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800 flex-1 sm:flex-none"
             :aria-label="`Read ${entry.name}`"
           >
@@ -112,5 +115,17 @@ const copyLocalUrl = async (): Promise<void> => {
       showCopiedFeedback.value = false;
     }, 2000);
   }
+};
+
+const handleReadMoreRightClick = (event: MouseEvent): void => {
+  event.preventDefault();
+  const localUrl = `${window.location.origin}/${props.entry.slug}`;
+  window.open(localUrl, '_blank');
+};
+
+const handleTitleRightClick = (event: MouseEvent): void => {
+  event.preventDefault();
+  const localUrl = `${window.location.origin}/${props.entry.slug}`;
+  window.open(localUrl, '_blank');
 };
 </script>
