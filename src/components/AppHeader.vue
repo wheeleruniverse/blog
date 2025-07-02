@@ -9,7 +9,6 @@
           <router-link
             to="/"
             class="flex items-center space-x-3 text-wheeler-gray-900 dark:text-white hover:text-wheeler-purple-600 dark:hover:text-wheeler-coral-400 transition-colors duration-200"
-            @contextmenu="handleHeaderRightClick"
           >
             <!-- Wheeler Universe Logo -->
             <img
@@ -107,10 +106,5 @@ const searchQuery = computed({
 
 const toggleMobileSearch = () => {
   showMobileSearchBar.value = !showMobileSearchBar.value;
-};
-
-const handleHeaderRightClick = (event: MouseEvent) => {
-  event.preventDefault();
-  window.open(window.location.origin, '_blank');
 };
 </script>
