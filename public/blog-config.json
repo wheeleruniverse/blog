@@ -16,6 +16,13 @@
   "data": [
     {
       "collab": false,
+      "date": "2024-07-08",
+      "name": "From Dusty Requirements to Live Website: How Claude Code Built My Blog Aggregator in a Single Day",
+      "slug": "claude-code-blog-aggregator",
+      "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo"
+    },
+    {
+      "collab": false,
       "date": "2024-05-09",
       "name": "How I Crushed My AWS Certification Renewals Back-to-Back (and Why It Was a Bad Idea)",
       "slug": "aws-cert-renewals-back-to-back",
