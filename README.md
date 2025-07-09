@@ -1,5 +1,7 @@
 # Wheeler Universe Blog
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6a10570c-e214-4019-9679-a5ce98e8cb7b/deploy-status)](https://app.netlify.com/projects/wheeleruniverse/deploys)
+
 A modern blog aggregation website built with Vue 3, TypeScript, and Tailwind CSS. This application aggregates blog posts from multiple platforms under the Wheeler Universe brand.
 
 ## 🚀 Features
