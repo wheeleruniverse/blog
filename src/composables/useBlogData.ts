@@ -18,6 +18,7 @@ export function useBlogData() {
     dateTo: '',
     sources: [],
     showCollabOnly: false,
+    showVideoOnly: false,
   });
 
   const loadBlogData = async (): Promise<void> => {
@@ -82,6 +83,11 @@ export function useBlogData() {
     // Collaboration filter
     if (filters.value.showCollabOnly) {
       entries = entries.filter(entry => entry.collab === true);
+    }
+
+    // Video filter
+    if (filters.value.showVideoOnly) {
+      entries = entries.filter(entry => entry.video === true);
     }
 
     return entries;

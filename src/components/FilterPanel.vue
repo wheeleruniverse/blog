@@ -91,6 +91,22 @@
         </label>
       </div>
 
+      <!-- Video Filter -->
+      <div>
+        <label class="flex items-center">
+          <input
+            v-model="localFilters.showVideoOnly"
+            type="checkbox"
+            class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+          />
+          <span
+            class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+          >
+            Show videos only
+          </span>
+        </label>
+      </div>
+
       <!-- Active Filters Display -->
       <div
         v-if="hasActiveFilters"
@@ -151,6 +167,18 @@
               <XMarkIcon class="w-3 h-3" />
             </button>
           </span>
+          <span
+            v-if="localFilters.showVideoOnly"
+            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+          >
+            Videos only
+            <button
+              @click="localFilters.showVideoOnly = false"
+              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+            >
+              <XMarkIcon class="w-3 h-3" />
+            </button>
+          </span>
         </div>
       </div>
     </div>
@@ -185,7 +213,8 @@ const hasActiveFilters = computed(() => {
     localFilters.value.dateFrom ||
     localFilters.value.dateTo ||
     localFilters.value.sources.length > 0 ||
-    localFilters.value.showCollabOnly
+    localFilters.value.showCollabOnly ||
+    localFilters.value.showVideoOnly
   );
 });
 
@@ -196,6 +225,7 @@ const clearAllFilters = () => {
     dateTo: '',
     sources: [],
     showCollabOnly: false,
+    showVideoOnly: false,
   };
 };
 

@@ -14,6 +14,7 @@ export interface BlogEntry {
   name: string;
   slug: string;
   source: string; // Original blog URL
+  video?: boolean; // written content: false/undefined, video: true
 }
 
 export interface FilterOptions {
@@ -22,6 +23,7 @@ export interface FilterOptions {
   dateTo: string;
   sources: string[];
   showCollabOnly: boolean;
+  showVideoOnly: boolean;
 }
 
 export interface ThemeState {

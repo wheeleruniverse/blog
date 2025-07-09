@@ -16,10 +16,18 @@
   "data": [
     {
       "collab": false,
-      "date": "2024-07-08",
+      "date": "2025-07-08",
       "name": "From Dusty Requirements to Live Website: How Claude Code Built My Blog Aggregator in a Single Day",
       "slug": "claude-code-blog-aggregator",
       "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo"
+    },
+    {
+      "collab": true,
+      "date": "2025-01-15",
+      "name": "Optimizing Your AWS Bill: Strategies for Reducing Costs and Maximizing ROI",
+      "slug": "wmaug-optimizing-your-aws-bill",
+      "source": "https://youtu.be/9ypRAMn1dOM?si=xGz4bzucks7J075p",
+      "video": true
     },
     {
       "collab": false,
@@ -33,7 +41,8 @@
       "date": "2024-03-21",
       "name": "A RedMonk Conversation with Developer Certification Enthusiast Justin Wheeler",
       "slug": "redmonk-conversation",
-      "source": "https://redmonk.com/videos/a-redmonk-conversation-with-developer-certification-enthusiast-justin-wheeler/"
+      "source": "https://redmonk.com/videos/a-redmonk-conversation-with-developer-certification-enthusiast-justin-wheeler/",
+      "video": true
     },
     {
       "collab": false,
