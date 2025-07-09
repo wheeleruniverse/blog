@@ -144,6 +144,7 @@ const clearAllFilters = () => {
     dateTo: '',
     sources: [],
     showCollabOnly: false,
+    showVideoOnly: false,
   };
 };
 
