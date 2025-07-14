@@ -6,15 +6,17 @@
       <div class="flex items-center justify-between h-16">
         <!-- Logo and Title -->
         <div class="flex items-center">
-          <router-link
-            to="/"
+          <a
+            href="https://wheeleruniverse.com"
+            target="_blank"
+            rel="noopener noreferrer"
             class="flex items-center space-x-3 text-wheeler-gray-900 dark:text-white hover:text-wheeler-purple-600 dark:hover:text-wheeler-coral-400 transition-colors duration-200"
           >
             <!-- Wheeler Universe Logo -->
             <img
               src="/wheeler-logo.jpg"
               alt="Wheeler Universe Logo"
-              class="w-10 h-10 rounded-lg object-cover"
+              class="w-10 h-10 rounded-lg object-cover dark:bg-white dark:p-0.5"
             />
             <div>
               <h1 class="text-xl font-bold">Wheeler Universe</h1>
@@ -24,7 +26,7 @@
                 Blog Aggregator
               </p>
             </div>
-          </router-link>
+          </a>
         </div>
 
         <!-- Navigation and Actions -->
