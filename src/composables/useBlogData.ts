@@ -75,8 +75,8 @@ export function useBlogData() {
     // Source filter
     if (filters.value.sources.length > 0) {
       entries = entries.filter(entry => {
-        const domain = new URL(entry.source).hostname;
-        return filters.value.sources.some(source => domain.includes(source));
+        const sourceToCheck = entry.sourceDisplayName || new URL(entry.source).hostname;
+        return filters.value.sources.includes(sourceToCheck);
       });
     }
 
@@ -98,11 +98,15 @@ export function useBlogData() {
 
     const sources = new Set<string>();
     blogConfig.value.data.forEach(entry => {
-      try {
-        const domain = new URL(entry.source).hostname;
-        sources.add(domain);
-      } catch {
-        // Ignore invalid URLs
+      if (entry.sourceDisplayName) {
+        sources.add(entry.sourceDisplayName);
+      } else {
+        try {
+          const domain = new URL(entry.source).hostname;
+          sources.add(domain);
+        } catch {
+          // Ignore invalid URLs
+        }
       }
     });
 

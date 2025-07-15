@@ -19,7 +19,8 @@
       "date": "2025-07-08",
       "name": "From Dusty Requirements to Live Website: How Claude Code Built My Blog Aggregator in a Single Day",
       "slug": "claude-code-blog-aggregator",
-      "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo"
+      "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": true,
@@ -27,6 +28,7 @@
       "name": "Optimizing Your AWS Bill: Strategies for Reducing Costs and Maximizing ROI",
       "slug": "wmaug-optimizing-your-aws-bill",
       "source": "https://youtu.be/9ypRAMn1dOM?si=xGz4bzucks7J075p",
+      "sourceDisplayName": "YouTube",
       "video": true
     },
     {
@@ -34,7 +36,8 @@
       "date": "2024-05-09",
       "name": "How I Crushed My AWS Certification Renewals Back-to-Back (and Why It Was a Bad Idea)",
       "slug": "aws-cert-renewals-back-to-back",
-      "source": "https://dev.to/aws-builders/how-i-crushed-my-aws-certification-renewals-back-to-back-and-why-it-was-a-bad-idea-56fh"
+      "source": "https://dev.to/aws-builders/how-i-crushed-my-aws-certification-renewals-back-to-back-and-why-it-was-a-bad-idea-56fh",
+      "sourceDisplayName": "Dev.to (AWS Community Builders)"
     },
     {
       "collab": false,
@@ -42,6 +45,7 @@
       "name": "A RedMonk Conversation with Developer Certification Enthusiast Justin Wheeler",
       "slug": "redmonk-conversation",
       "source": "https://redmonk.com/videos/a-redmonk-conversation-with-developer-certification-enthusiast-justin-wheeler/",
+      "sourceDisplayName": "RedMonk",
       "video": true
     },
     {
@@ -49,175 +53,200 @@
       "date": "2024-02-28",
       "name": "Lessons Learned from Learning Everyday for 4 Years on Pluralsight",
       "slug": "lessons-learned-pluralsight-4-years",
-      "source": "https://dev.to/wheeleruniverse/lessons-learned-from-learning-everyday-for-4-years-on-pluralsight-2d47"
+      "source": "https://dev.to/wheeleruniverse/lessons-learned-from-learning-everyday-for-4-years-on-pluralsight-2d47",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2024-02-12",
       "name": "Getting Hands-on with Blazor, Next.js and Vercel",
       "slug": "hands-on-blazor-nextjs-vercel",
-      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-and-vercel-gg0"
+      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-and-vercel-gg0",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2024-02-06",
       "name": "New Year, New Cost Savings Opportunities in Cloud Services",
       "slug": "new-year-new-cloud-cost-savings-opportunities",
-      "source": "https://bravolt.com/post/new-cost-saving-in-cloud-services"
+      "source": "https://Bravo LT.com/post/new-cost-saving-in-cloud-services",
+      "sourceDisplayName": "Bravo LT"
     },
     {
       "collab": false,
       "date": "2024-01-30",
       "name": "Navigating AWS Certifications in 2024",
       "slug": "navigating-aws-certifications-2024",
-      "source": "https://dev.to/aws-builders/navigating-aws-certifications-in-2024-hap"
+      "source": "https://dev.to/aws-builders/navigating-aws-certifications-in-2024-hap",
+      "sourceDisplayName": "Dev.to (AWS Community Builders)"
     },
     {
       "collab": false,
       "date": "2024-01-08",
       "name": "Parenting vs. Cloud Computing: Overcoming Challenges and Embracing Growth",
       "slug": "parenting-vs-cloud-computing",
-      "source": "https://dev.to/aws-builders/parenting-vs-cloud-computing-overcoming-challenges-and-embracing-growth-1i3b"
+      "source": "https://dev.to/aws-builders/parenting-vs-cloud-computing-overcoming-challenges-and-embracing-growth-1i3b",
+      "sourceDisplayName": "Dev.to (AWS Community Builders)"
     },
     {
       "collab": false,
       "date": "2023-04-03",
       "name": "Optimizing AWS Cloud Costs: A Two-Phase Approach for Efficiency and Savings",
       "slug": "optimizing-aws-cloud-costs",
-      "source": "https://bravolt.com/post/optimizing-aws-cloud-costs-a-two-phase-approach-for-efficiency-and-savings"
+      "source": "https://Bravo LT.com/post/optimizing-aws-cloud-costs-a-two-phase-approach-for-efficiency-and-savings",
+      "sourceDisplayName": "Bravo LT"
     },
     {
       "collab": false,
       "date": "2023-03-08",
       "name": "Defining AWS Cost Optimization",
       "slug": "defining-aws-cost-optimization",
-      "source": "https://bravolt.com/post/defining-aws-cost-optimization"
+      "source": "https://Bravo LT.com/post/defining-aws-cost-optimization",
+      "sourceDisplayName": "Bravo LT"
     },
     {
       "collab": false,
       "date": "2022-07-26",
       "name": "Deploying a Mostly Serverless Website on GCP",
       "slug": "serverless-website-gcp",
-      "source": "https://dev.to/wheeleruniverse/deploying-a-mostly-serverless-website-on-gcp-134d"
+      "source": "https://dev.to/wheeleruniverse/deploying-a-mostly-serverless-website-on-gcp-134d",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": true,
       "date": "2022-04-25",
       "name": "Lightsail: AWS Easy Mode",
       "slug": "lightsail-aws-easy-mode",
-      "source": "https://dev.to/wheeleruniverse/lightsail-aws-easy-mode-13ae"
+      "source": "https://dev.to/wheeleruniverse/lightsail-aws-easy-mode-13ae",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2022-03-17",
       "name": "Fully AWS Certified - The 5 Most Common Questions I Received",
       "slug": "fully-aws-certified-common-questions",
-      "source": "https://dev.to/wheeleruniverse/fully-aws-certified-the-5-most-common-questions-i-received-1pk8"
+      "source": "https://dev.to/wheeleruniverse/fully-aws-certified-the-5-most-common-questions-i-received-1pk8",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-11-19",
       "name": "Creating Serverless Websites with AWS, Bref, and PHP",
       "slug": "serverless-aws-bref-php",
-      "source": "https://dev.to/aws-builders/creating-serverless-websites-with-aws-bref-and-php-203j"
+      "source": "https://dev.to/aws-builders/creating-serverless-websites-with-aws-bref-and-php-203j",
+      "sourceDisplayName": "Dev.to (AWS Community Builders)"
     },
     {
       "collab": false,
       "date": "2021-10-01",
       "name": "Meta Resume Challenge",
       "slug": "meta-resume-challenge",
-      "source": "https://dev.to/wheeleruniverse/meta-resume-challenge-5a1a"
+      "source": "https://dev.to/wheeleruniverse/meta-resume-challenge-5a1a",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-09-30",
       "name": "GCP Resume",
       "slug": "gcp-resume",
-      "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj"
+      "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": true,
       "date": "2021-07-20",
       "name": "Our Quest for the Perfect Code Assessment",
       "slug": "our-quest-for-the-perfect-code-assessment",
-      "source": "https://bravolt.com/post/our-quest-for-the-perfect-code-assessment"
+      "source": "https://Bravo LT.com/post/our-quest-for-the-perfect-code-assessment",
+      "sourceDisplayName": "Bravo LT"
     },
     {
       "collab": false,
       "date": "2021-06-24",
       "name": "AWS App Performance",
       "slug": "aws-app-performance",
-      "source": "https://dev.to/wheeleruniverse/jun-21-cloudguruchallenge-2k11"
+      "source": "https://dev.to/wheeleruniverse/jun-21-cloudguruchallenge-2k11",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-05-28",
       "name": "Azure Resume",
       "slug": "azure-resume",
-      "source": "https://dev.to/wheeleruniverse/apr-21-cloudguruchallenge-3fch"
+      "source": "https://dev.to/wheeleruniverse/apr-21-cloudguruchallenge-3fch",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-04-15",
       "name": "Azure Ruby on Rails with CI/CD",
       "slug": "azure-ruby-on-rails-with-cicd",
-      "source": "https://dev.to/wheeleruniverse/feb-21-cloudguruchallenge-358d"
+      "source": "https://dev.to/wheeleruniverse/feb-21-cloudguruchallenge-358d",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-02-04",
       "name": "AWS ECR in 3 Minutes",
       "slug": "aws-ecr-3-minutes",
-      "source": "https://dev.to/wheeleruniverse/aws-ecr-in-3-minutes-3e1p"
+      "source": "https://dev.to/wheeleruniverse/aws-ecr-in-3-minutes-3e1p",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-02-03",
       "name": "AWS CloudFront in 3 Minutes",
       "slug": "aws-cloudfront-3-minutes",
-      "source": "https://dev.to/wheeleruniverse/aws-cloudfront-in-3-minutes-5ap5"
+      "source": "https://dev.to/wheeleruniverse/aws-cloudfront-in-3-minutes-5ap5",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-02-02",
       "name": "AWS Route 53 in 3 Minutes",
       "slug": "aws-route53-3-minutes",
-      "source": "https://dev.to/wheeleruniverse/aws-route-53-in-3-minutes-2fal"
+      "source": "https://dev.to/wheeleruniverse/aws-route-53-in-3-minutes-2fal",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-01-26",
       "name": "AWS Lambda in 3 Minutes",
       "slug": "aws-lambda-3-minutes",
-      "source": "https://dev.to/wheeleruniverse/aws-lambda-in-3-minutes-2eff"
+      "source": "https://dev.to/wheeleruniverse/aws-lambda-in-3-minutes-2eff",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-01-25",
       "name": "AWS S3 in 3 Minutes",
       "slug": "aws-s3-3-minutes",
-      "source": "https://dev.to/wheeleruniverse/aws-s3-in-3-minutes-42dc"
+      "source": "https://dev.to/wheeleruniverse/aws-s3-in-3-minutes-42dc",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2021-01-24",
       "name": "Multi Cloud Madness",
       "slug": "multi-cloud-madness",
-      "source": "https://dev.to/wheeleruniverse/january-21-cloudguruchallenge-iaj"
+      "source": "https://dev.to/wheeleruniverse/january-21-cloudguruchallenge-iaj",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2020-12-18",
       "name": "AWS ML Recommendation Engine",
       "slug": "aws-ml-recommendation-engine",
-      "source": "https://dev.to/wheeleruniverse/my-october-cloud-guru-challenge-experience-5ecg"
+      "source": "https://dev.to/wheeleruniverse/my-october-cloud-guru-challenge-experience-5ecg",
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
       "date": "2020-09-21",
       "name": "AWS COVID ETL",
       "slug": "aws-covid-etl",
-      "source": "https://dev.to/wheeleruniverse/my-september-cloud-guru-challenge-experience-l2j"
+      "source": "https://dev.to/wheeleruniverse/my-september-cloud-guru-challenge-experience-l2j",
+      "sourceDisplayName": "Dev.to (Personal)"
     }
   ]
 }

@@ -14,6 +14,7 @@ export interface BlogEntry {
   name: string;
   slug: string;
   source: string; // Original blog URL
+  sourceDisplayName?: string; // Display name for source (e.g., "YouTube", "Personal Blog")
   video?: boolean; // written content: false/undefined, video: true
 }
 

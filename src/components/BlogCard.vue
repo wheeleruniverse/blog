@@ -25,7 +25,7 @@
             </time>
             <span class="flex items-center gap-1 truncate">
               <LinkIcon class="w-4 h-4 shrink-0" />
-              <span class="truncate">{{ getSourceDomain(entry.source) }}</span>
+              <span class="truncate">{{ entry.sourceDisplayName || getSourceDomain(entry.source) }}</span>
             </span>
           </div>
         </div>

@@ -54,7 +54,7 @@
         >
           Source
         </label>
-        <div class="space-y-2 max-h-32 overflow-y-auto">
+        <div class="space-y-2">
           <label
             v-for="source in availableSources"
             :key="source"

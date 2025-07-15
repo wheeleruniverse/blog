@@ -35,7 +35,7 @@
         </div>
 
         <!-- Filters -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div class="lg:col-span-1">
             <FilterPanel
               :filters="filters"
@@ -44,7 +44,7 @@
             />
           </div>
 
-          <div class="lg:col-span-3">
+          <div class="lg:col-span-2">
             <!-- Error State -->
             <div
               v-if="error"
