@@ -40,6 +40,7 @@
             <FilterPanel
               :filters="filters"
               :available-sources="availableSources"
+              :all-entries="sortedBlogEntries"
               @update:filters="updateFilters"
             />
           </div>
@@ -142,6 +143,7 @@ const clearAllFilters = () => {
     search: '',
     dateFrom: '',
     dateTo: '',
+    datePreset: '',
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,

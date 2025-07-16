@@ -22,6 +22,7 @@ export interface FilterOptions {
   search: string;
   dateFrom: string;
   dateTo: string;
+  datePreset: string; // For 1-click date filters like "1month", "3months", "2024", etc.
   sources: string[];
   showCollabOnly: boolean;
   showVideoOnly: boolean;

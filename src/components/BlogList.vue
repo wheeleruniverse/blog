@@ -104,8 +104,10 @@ const hasActiveFilters = computed(() => {
     props.filters.search ||
     props.filters.dateFrom ||
     props.filters.dateTo ||
+    props.filters.datePreset ||
     props.filters.sources.length > 0 ||
-    props.filters.showCollabOnly
+    props.filters.showCollabOnly ||
+    props.filters.showVideoOnly
   );
 });
 

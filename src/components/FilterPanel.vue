@@ -16,34 +16,27 @@
     </div>
 
     <div class="space-y-6">
-      <!-- Date Range Filter -->
+      <!-- Date Filter -->
       <div>
         <label
           class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
         >
-          Date Range
+          Time Period
         </label>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label for="date-from" class="sr-only">From date</label>
-            <input
-              id="date-from"
-              v-model="localFilters.dateFrom"
-              type="date"
-              placeholder="From"
-              class="block w-full px-3 py-2 text-wheeler-gray-900 dark:text-white bg-white dark:bg-wheeler-gray-700 border border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded-md focus:ring-2 focus:ring-wheeler-purple-500 focus:border-wheeler-purple-500 text-sm"
-            />
-          </div>
-          <div>
-            <label for="date-to" class="sr-only">To date</label>
-            <input
-              id="date-to"
-              v-model="localFilters.dateTo"
-              type="date"
-              placeholder="To"
-              class="block w-full px-3 py-2 text-wheeler-gray-900 dark:text-white bg-white dark:bg-wheeler-gray-700 border border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded-md focus:ring-2 focus:ring-wheeler-purple-500 focus:border-wheeler-purple-500 text-sm"
-            />
-          </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            v-for="preset in datePresets"
+            :key="preset.value"
+            @click="setDatePreset(preset.value)"
+            :class="[
+              'px-3 py-2 text-sm font-medium rounded-md border transition-colors duration-200',
+              localFilters.datePreset === preset.value
+                ? 'bg-wheeler-purple-600 text-white border-wheeler-purple-600'
+                : 'bg-white dark:bg-wheeler-gray-700 text-wheeler-gray-700 dark:text-wheeler-gray-300 border-wheeler-gray-300 dark:border-wheeler-gray-600 hover:bg-wheeler-gray-50 dark:hover:bg-wheeler-gray-600',
+            ]"
+          >
+            {{ preset.label }}
+          </button>
         </div>
       </div>
 
@@ -119,24 +112,12 @@
         </h4>
         <div class="flex flex-wrap gap-2">
           <span
-            v-if="localFilters.dateFrom"
+            v-if="localFilters.datePreset"
             class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
           >
-            From: {{ formatDate(localFilters.dateFrom) }}
+            {{ getDatePresetLabel(localFilters.datePreset) }}
             <button
-              @click="localFilters.dateFrom = ''"
-              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
-            >
-              <XMarkIcon class="w-3 h-3" />
-            </button>
-          </span>
-          <span
-            v-if="localFilters.dateTo"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
-          >
-            To: {{ formatDate(localFilters.dateTo) }}
-            <button
-              @click="localFilters.dateTo = ''"
+              @click="setDatePreset('')"
               class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
             >
               <XMarkIcon class="w-3 h-3" />
@@ -187,13 +168,13 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import type { FilterOptions } from '@/types';
+import type { FilterOptions, BlogEntry } from '@/types';
 import { XMarkIcon } from '@heroicons/vue/24/outline';
-import { formatDate } from '@/utils';
 
 interface Props {
   filters: FilterOptions;
   availableSources: string[];
+  allEntries: BlogEntry[];
 }
 
 interface Emits {
@@ -208,10 +189,85 @@ const localFilters = computed({
   set: (value: FilterOptions) => emit('update:filters', value),
 });
 
+// Get available years from data
+const availableYears = computed(() => {
+  if (!props.allEntries || props.allEntries.length === 0) return [];
+
+  const years = new Set<string>();
+  props.allEntries.forEach(entry => {
+    const year = new Date(entry.date).getFullYear().toString();
+    years.add(year);
+  });
+
+  return Array.from(years).sort((a, b) => parseInt(b) - parseInt(a)); // Descending order
+});
+
+// Static presets + dynamic years
+const datePresets = computed(() => {
+  const staticPresets = [
+    { label: 'All Time', value: '' },
+    { label: '3 Months', value: '3months' },
+    { label: '6 Months', value: '6months' },
+    { label: '1 Year', value: '1year' },
+  ];
+
+  const yearPresets = availableYears.value.map(year => ({
+    label: year,
+    value: year,
+  }));
+
+  return [...staticPresets, ...yearPresets];
+});
+
+const setDatePreset = (preset: string) => {
+  const now = new Date();
+  let dateFrom = '';
+  let dateTo = '';
+
+  if (preset === '3months') {
+    const threeMonthsAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 3,
+      now.getDate()
+    );
+    dateFrom = threeMonthsAgo.toISOString().split('T')[0];
+    dateTo = now.toISOString().split('T')[0];
+  } else if (preset === '6months') {
+    const sixMonthsAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 6,
+      now.getDate()
+    );
+    dateFrom = sixMonthsAgo.toISOString().split('T')[0];
+    dateTo = now.toISOString().split('T')[0];
+  } else if (preset === '1year') {
+    const oneYearAgo = new Date(
+      now.getFullYear() - 1,
+      now.getMonth(),
+      now.getDate()
+    );
+    dateFrom = oneYearAgo.toISOString().split('T')[0];
+    dateTo = now.toISOString().split('T')[0];
+  } else if (preset && preset.match(/^\d{4}$/)) {
+    // Year preset
+    dateFrom = `${preset}-01-01`;
+    dateTo = `${preset}-12-31`;
+  }
+  // For empty preset (All Time), both dates remain empty
+
+  localFilters.value = {
+    ...localFilters.value,
+    dateFrom,
+    dateTo,
+    datePreset: preset,
+  };
+};
+
 const hasActiveFilters = computed(() => {
   return !!(
     localFilters.value.dateFrom ||
     localFilters.value.dateTo ||
+    localFilters.value.datePreset ||
     localFilters.value.sources.length > 0 ||
     localFilters.value.showCollabOnly ||
     localFilters.value.showVideoOnly
@@ -223,6 +279,7 @@ const clearAllFilters = () => {
     search: localFilters.value.search, // Keep search term
     dateFrom: '',
     dateTo: '',
+    datePreset: '',
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
@@ -236,6 +293,11 @@ const removeSource = (sourceToRemove: string) => {
       source => source !== sourceToRemove
     ),
   };
+};
+
+const getDatePresetLabel = (preset: string): string => {
+  const presetObj = datePresets.value.find(p => p.value === preset);
+  return presetObj?.label || preset;
 };
 
 // Watch for changes and emit updates

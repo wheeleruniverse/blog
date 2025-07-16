@@ -16,6 +16,7 @@ export function useBlogData() {
     search: '',
     dateFrom: '',
     dateTo: '',
+    datePreset: '',
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
@@ -75,7 +76,8 @@ export function useBlogData() {
     // Source filter
     if (filters.value.sources.length > 0) {
       entries = entries.filter(entry => {
-        const sourceToCheck = entry.sourceDisplayName || new URL(entry.source).hostname;
+        const sourceToCheck =
+          entry.sourceDisplayName || new URL(entry.source).hostname;
         return filters.value.sources.includes(sourceToCheck);
       });
     }
