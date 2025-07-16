@@ -3,9 +3,25 @@
     class="bg-white dark:bg-wheeler-gray-800 rounded-lg shadow-sm border border-wheeler-gray-200 dark:border-wheeler-gray-700 p-6"
   >
     <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-medium text-wheeler-gray-900 dark:text-white">
-        Filters
-      </h3>
+      <div class="flex items-center gap-2">
+        <h3 class="text-lg font-medium text-wheeler-gray-900 dark:text-white">
+          Filters
+        </h3>
+        <button
+          @click="toggleCollapsed"
+          class="p-1 rounded-md hover:bg-wheeler-gray-100 dark:hover:bg-wheeler-gray-700 transition-colors duration-200"
+          :aria-label="isCollapsed ? 'Expand filters' : 'Collapse filters'"
+        >
+          <ChevronDownIcon 
+            v-if="isCollapsed"
+            class="w-5 h-5 text-wheeler-gray-500 dark:text-wheeler-gray-400"
+          />
+          <ChevronUpIcon 
+            v-else
+            class="w-5 h-5 text-wheeler-gray-500 dark:text-wheeler-gray-400"
+          />
+        </button>
+      </div>
       <button
         v-if="hasActiveFilters"
         @click="clearAllFilters"
@@ -15,8 +31,12 @@
       </button>
     </div>
 
-    <div class="space-y-6">
-      <!-- Date Filter -->
+    <div 
+      class="overflow-hidden transition-all duration-300 ease-in-out"
+      :class="isCollapsed ? 'max-h-0' : 'max-h-[2000px]'"
+    >
+      <div class="space-y-6">
+        <!-- Date Filter -->
       <div>
         <label
           class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
@@ -162,14 +182,15 @@
           </span>
         </div>
       </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import type { FilterOptions, BlogEntry } from '@/types';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+import { XMarkIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/outline';
 
 interface Props {
   filters: FilterOptions;
@@ -179,10 +200,30 @@ interface Props {
 
 interface Emits {
   (e: 'update:filters', filters: FilterOptions): void;
+  (e: 'update:collapsed', collapsed: boolean): void;
 }
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
+
+// Collapsible state
+const isCollapsed = ref(false);
+
+// Set initial collapsed state based on screen size
+const setInitialCollapsedState = () => {
+  // Collapsed on mobile (< 768px), expanded on tablet/desktop
+  isCollapsed.value = window.innerWidth < 768;
+};
+
+const toggleCollapsed = () => {
+  isCollapsed.value = !isCollapsed.value;
+  emit('update:collapsed', isCollapsed.value);
+};
+
+onMounted(() => {
+  setInitialCollapsedState();
+  emit('update:collapsed', isCollapsed.value);
+});
 
 const localFilters = computed({
   get: () => props.filters,

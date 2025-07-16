@@ -35,17 +35,18 @@
         </div>
 
         <!-- Filters -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div class="lg:col-span-1">
+        <div class="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out" :class="dynamicGridClass">
+          <div class="transition-all duration-300 ease-in-out" :class="filterPanelClass">
             <FilterPanel
               :filters="filters"
               :available-sources="availableSources"
               :all-entries="sortedBlogEntries"
               @update:filters="updateFilters"
+              @update:collapsed="updateCollapsedState"
             />
           </div>
 
-          <div class="lg:col-span-2">
+          <div class="transition-all duration-300 ease-in-out" :class="blogListClass">
             <!-- Error State -->
             <div
               v-if="error"
@@ -97,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 import { useBlogData } from '@/composables/useBlogData';
 import AppHeader from '@/components/AppHeader.vue';
@@ -107,6 +108,9 @@ import FilterPanel from '@/components/FilterPanel.vue';
 import BlogList from '@/components/BlogList.vue';
 import type { FilterOptions } from '@/types';
 import { formatDate } from '@/utils';
+
+// Collapsible filter state
+const isFilterCollapsed = ref(false);
 
 const {
   loadBlogData,
@@ -129,6 +133,23 @@ const latestPostDate = computed(() => {
   const latestPost = sortedBlogEntries.value[0];
   return formatDate(latestPost.date, 'en-US');
 });
+
+// Dynamic grid classes based on collapse state
+const dynamicGridClass = computed(() => {
+  return isFilterCollapsed.value ? 'lg:grid-cols-1' : 'lg:grid-cols-3';
+});
+
+const filterPanelClass = computed(() => {
+  return isFilterCollapsed.value ? 'lg:col-span-1' : 'lg:col-span-1';
+});
+
+const blogListClass = computed(() => {
+  return isFilterCollapsed.value ? 'lg:col-span-1' : 'lg:col-span-2';
+});
+
+const updateCollapsedState = (collapsed: boolean) => {
+  isFilterCollapsed.value = collapsed;
+};
 
 const updateSearch = (searchTerm: string) => {
   filters.value.search = searchTerm;
