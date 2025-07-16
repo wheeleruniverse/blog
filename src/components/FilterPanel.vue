@@ -31,6 +31,64 @@
       </button>
     </div>
 
+    <!-- Active Filters Display for Collapsed View -->
+    <div 
+      v-if="isCollapsed && hasActiveFilters"
+      class="mt-4 transition-all duration-300 ease-in-out"
+    >
+      <div class="flex flex-wrap gap-2">
+        <span
+          v-if="localFilters.datePreset"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+        >
+          {{ getDatePresetLabel(localFilters.datePreset) }}
+          <button
+            @click="setDatePreset('')"
+            class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+          >
+            <XMarkIcon class="w-3 h-3" />
+          </button>
+        </span>
+        <span
+          v-for="source in localFilters.sources"
+          :key="source"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+        >
+          {{ source }}
+          <button
+            @click="removeSource(source)"
+            class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+          >
+            <XMarkIcon class="w-3 h-3" />
+          </button>
+        </span>
+        <span
+          v-if="localFilters.showCollabOnly"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+        >
+          Collaborations only
+          <button
+            @click="localFilters.showCollabOnly = false"
+            class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+          >
+            <XMarkIcon class="w-3 h-3" />
+          </button>
+        </span>
+        <span
+          v-if="localFilters.showVideoOnly"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+        >
+          Videos only
+          <button
+            @click="localFilters.showVideoOnly = false"
+            class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+          >
+            <XMarkIcon class="w-3 h-3" />
+          </button>
+        </span>
+      </div>
+    </div>
+
     <div 
       class="overflow-hidden transition-all duration-300 ease-in-out"
       :class="isCollapsed ? 'max-h-0' : 'max-h-[2000px]'"
