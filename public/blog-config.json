@@ -89,6 +89,15 @@
       "sourceDisplayName": "Dev.to (AWS Community Builders)"
     },
     {
+      "collab": true,
+      "date": "2023-04-18",
+      "name": "False External Perception of the Tech Industry",
+      "slug": "false-external-perception-of-the-tech-industry",
+      "source": "https://www.youtube.com/live/-1YjEQYjpJs?si=8Gu77HRbA6yI-cVV",
+      "sourceDisplayName": "YouTube",
+      "video": true
+    },
+    {
       "collab": false,
       "date": "2023-04-03",
       "name": "Optimizing AWS Cloud Costs: A Two-Phase Approach for Efficiency and Savings",
