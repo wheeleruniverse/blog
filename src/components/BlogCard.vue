@@ -38,8 +38,8 @@
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center px-3 py-2 text-wheeler-gray-600 hover:text-wheeler-gray-900 dark:text-wheeler-gray-400 dark:hover:text-white hover:bg-wheeler-gray-100 dark:hover:bg-wheeler-gray-700 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-wheeler-purple-500 focus:ring-offset-2 dark:focus:ring-offset-wheeler-gray-800 shrink-0"
-            :aria-label="`View GitHub repository for ${entry.name}`"
-            title="View GitHub repository"
+            :aria-label="`View public GitHub repository for ${entry.name}`"
+            title="View public GitHub repository"
           >
             <svg
               class="w-5 h-5"

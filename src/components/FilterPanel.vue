@@ -90,7 +90,7 @@
           v-if="localFilters.showGithubOnly"
           class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
         >
-          GitHub repos only
+          Public repos only
           <button
             @click="localFilters.showGithubOnly = false"
             class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
@@ -201,7 +201,7 @@
             <span
               class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
             >
-              Show GitHub repositories only
+              Show public GitHub repositories only
             </span>
           </label>
         </div>
@@ -270,7 +270,7 @@
               v-if="localFilters.showGithubOnly"
               class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
             >
-              GitHub repos only
+              Public repos only
               <button
                 @click="localFilters.showGithubOnly = false"
                 class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
