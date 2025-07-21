@@ -154,12 +154,12 @@ describe('FilterPanel', () => {
     });
 
     const sourceCheckbox = wrapper.find('input[value="Example"]');
-    await sourceCheckbox.setChecked(true);
+    await sourceCheckbox.setValue(true);
 
     expect(wrapper.emitted('update:filters')).toBeTruthy();
     const emittedFilters = wrapper.emitted(
       'update:filters'
-    )[0][0] as FilterOptions;
+    )?.[0]?.[0] as FilterOptions;
     expect(emittedFilters.sources).toContain('Example');
   });
 

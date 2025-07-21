@@ -156,8 +156,7 @@ describe('BlogList', () => {
         filters: { ...defaultFilters, dateFrom: '2024-01-01' },
       },
     });
-    const component1 = wrapper1.vm;
-    expect(component1.hasActiveFilters).toBe(true);
+    expect(wrapper1.text()).toContain('Filters active');
 
     // Test showCollabOnly filter
     const wrapper2 = mount(BlogList, {
@@ -166,8 +165,7 @@ describe('BlogList', () => {
         filters: { ...defaultFilters, showCollabOnly: true },
       },
     });
-    const component2 = wrapper2.vm;
-    expect(component2.hasActiveFilters).toBe(true);
+    expect(wrapper2.text()).toContain('Filters active');
 
     // Test no active filters
     const wrapper3 = mount(BlogList, {
@@ -176,8 +174,7 @@ describe('BlogList', () => {
         filters: defaultFilters,
       },
     });
-    const component3 = wrapper3.vm;
-    expect(component3.hasActiveFilters).toBe(false);
+    expect(wrapper3.text()).not.toContain('Filters active');
   });
 
   it('renders blog cards with proper animation classes', () => {

@@ -176,7 +176,7 @@ describe('AppHeader', () => {
     await desktopSearchBar.vm.$emit('update:modelValue', 'test search');
 
     expect(wrapper.emitted('update:search')).toBeTruthy();
-    expect(wrapper.emitted('update:search')[0]).toEqual(['test search']);
+    expect(wrapper.emitted('update:search')?.[0]).toEqual(['test search']);
   });
 
   it('emits update:search when mobile search changes', async () => {
@@ -203,7 +203,7 @@ describe('AppHeader', () => {
     await mobileSearchBar.vm.$emit('update:modelValue', 'mobile search');
 
     expect(wrapper.emitted('update:search')).toBeTruthy();
-    expect(wrapper.emitted('update:search')[0]).toEqual(['mobile search']);
+    expect(wrapper.emitted('update:search')?.[0]).toEqual(['mobile search']);
   });
 
   it('has proper logo link attributes', () => {

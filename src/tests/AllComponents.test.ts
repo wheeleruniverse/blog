@@ -114,7 +114,9 @@ describe('Vue Component Tests', () => {
 
       await wrapper.find('input').setValue('test search');
       expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-      expect(wrapper.emitted('update:modelValue')[0]).toEqual(['test search']);
+      expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([
+        'test search',
+      ]);
     });
 
     it('shows clear button when there is text', () => {
@@ -135,7 +137,7 @@ describe('Vue Component Tests', () => {
 
       await wrapper.find('button').trigger('click');
       expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-      expect(wrapper.emitted('update:modelValue')[0]).toEqual(['']);
+      expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['']);
     });
 
     it('displays results count when enabled', () => {

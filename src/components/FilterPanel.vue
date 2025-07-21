@@ -411,4 +411,9 @@ watch(
   },
   { deep: true }
 );
+
+defineExpose({
+  isCollapsed,
+  setInitialCollapsedState,
+});
 </script>

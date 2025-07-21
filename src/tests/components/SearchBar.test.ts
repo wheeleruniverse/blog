@@ -67,7 +67,7 @@ describe('SearchBar', () => {
     await input.setValue('new search term');
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([
       'new search term',
     ]);
   });
@@ -106,7 +106,7 @@ describe('SearchBar', () => {
     await clearButton.trigger('click');
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual(['']);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['']);
   });
 
   it('displays results count when showResultsCount is true', () => {
