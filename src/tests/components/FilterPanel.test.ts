@@ -52,6 +52,7 @@ describe('FilterPanel', () => {
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
+    showGithubOnly: false,
   };
 
   const defaultProps = {
@@ -195,6 +196,7 @@ describe('FilterPanel', () => {
       sources: [],
       showCollabOnly: false,
       showVideoOnly: false,
+      showGithubOnly: false,
     };
 
     wrapper = mount(FilterPanel, {

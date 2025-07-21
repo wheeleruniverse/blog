@@ -177,6 +177,7 @@ const clearAllFilters = () => {
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
+    showGithubOnly: false,
   };
 };
 

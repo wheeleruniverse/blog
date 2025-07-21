@@ -20,6 +20,7 @@ export function useBlogData() {
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
+    showGithubOnly: false,
   });
 
   const loadBlogData = async (): Promise<void> => {
@@ -90,6 +91,11 @@ export function useBlogData() {
     // Video filter
     if (filters.value.showVideoOnly) {
       entries = entries.filter(entry => entry.video === true);
+    }
+
+    // GitHub filter
+    if (filters.value.showGithubOnly) {
+      entries = entries.filter(entry => !!entry.github);
     }
 
     return entries;

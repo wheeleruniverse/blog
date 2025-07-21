@@ -107,7 +107,8 @@ const hasActiveFilters = computed(() => {
     props.filters.datePreset ||
     props.filters.sources.length > 0 ||
     props.filters.showCollabOnly ||
-    props.filters.showVideoOnly
+    props.filters.showVideoOnly ||
+    props.filters.showGithubOnly
   );
 });
 

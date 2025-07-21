@@ -34,6 +34,7 @@ describe('BlogList', () => {
     sources: [],
     showCollabOnly: false,
     showVideoOnly: false,
+    showGithubOnly: false,
   };
 
   const defaultProps = {

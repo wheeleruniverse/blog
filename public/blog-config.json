@@ -20,7 +20,8 @@
       "name": "From Dusty Requirements to Live Website: How Claude Code Built My Blog Aggregator in a Single Day",
       "slug": "claude-code-blog-aggregator",
       "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/blog"
     },
     {
       "collab": true,
@@ -62,7 +63,8 @@
       "name": "Getting Hands-on with Blazor, Next.js and Vercel",
       "slug": "hands-on-blazor-nextjs-vercel",
       "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-and-vercel-gg0",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-resume-from-json"
     },
     {
       "collab": false,
@@ -143,7 +145,8 @@
       "name": "Creating Serverless Websites with AWS, Bref, and PHP",
       "slug": "serverless-aws-bref-php",
       "source": "https://dev.to/aws-builders/creating-serverless-websites-with-aws-bref-and-php-203j",
-      "sourceDisplayName": "Dev.to (AWS Community Builders)"
+      "sourceDisplayName": "Dev.to (AWS Community Builders)",
+      "github": "https://github.com/wheeleruniverse/wheelerrecommends"
     },
     {
       "collab": false,
@@ -151,7 +154,8 @@
       "name": "Meta Resume Challenge",
       "slug": "meta-resume-challenge",
       "source": "https://dev.to/wheeleruniverse/meta-resume-challenge-5a1a",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/multicloud-resume"
     },
     {
       "collab": false,
@@ -159,7 +163,8 @@
       "name": "GCP Resume",
       "slug": "gcp-resume",
       "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-gcp-resume"
     },
     {
       "collab": true,
@@ -175,7 +180,8 @@
       "name": "AWS App Performance",
       "slug": "aws-app-performance",
       "source": "https://dev.to/wheeleruniverse/jun-21-cloudguruchallenge-2k11",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-aws-app-performance"
     },
     {
       "collab": false,
@@ -183,7 +189,8 @@
       "name": "Azure Resume",
       "slug": "azure-resume",
       "source": "https://dev.to/wheeleruniverse/apr-21-cloudguruchallenge-3fch",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-azure-resume"
     },
     {
       "collab": false,
@@ -191,7 +198,8 @@
       "name": "Azure Ruby on Rails with CI/CD",
       "slug": "azure-ruby-on-rails-with-cicd",
       "source": "https://dev.to/wheeleruniverse/feb-21-cloudguruchallenge-358d",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-azure-cicd"
     },
     {
       "collab": false,
@@ -239,7 +247,8 @@
       "name": "Multi Cloud Madness",
       "slug": "multi-cloud-madness",
       "source": "https://dev.to/wheeleruniverse/january-21-cloudguruchallenge-iaj",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-multicloud-madness"
     },
     {
       "collab": false,
@@ -247,7 +256,8 @@
       "name": "AWS ML Recommendation Engine",
       "slug": "aws-ml-recommendation-engine",
       "source": "https://dev.to/wheeleruniverse/my-october-cloud-guru-challenge-experience-5ecg",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-aws-ml-recommendation-engine"
     },
     {
       "collab": false,
@@ -255,7 +265,8 @@
       "name": "AWS COVID ETL",
       "slug": "aws-covid-etl",
       "source": "https://dev.to/wheeleruniverse/my-september-cloud-guru-challenge-experience-l2j",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-aws-covid-etl"
     }
   ]
 }

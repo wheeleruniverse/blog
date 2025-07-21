@@ -16,6 +16,7 @@ export interface BlogEntry {
   source: string; // Original blog URL
   sourceDisplayName?: string; // Display name for source (e.g., "YouTube", "Personal Blog")
   video?: boolean; // written content: false/undefined, video: true
+  github?: string; // GitHub repository URL
 }
 
 export interface FilterOptions {
@@ -26,6 +27,7 @@ export interface FilterOptions {
   sources: string[];
   showCollabOnly: boolean;
   showVideoOnly: boolean;
+  showGithubOnly: boolean;
 }
 
 export interface ThemeState {
