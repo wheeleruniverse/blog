@@ -1,6 +1,6 @@
 import FilterPanel from '@/components/FilterPanel.vue';
 import type { BlogEntry, FilterOptions } from '@/types';
-import { mount } from '@vue/test-utils';
+import { mount, type VueWrapper } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { nextTick } from 'vue';
 
@@ -12,7 +12,7 @@ Object.defineProperty(window, 'innerWidth', {
 });
 
 describe('FilterPanel', () => {
-  let wrapper: any;
+  let wrapper: VueWrapper<InstanceType<typeof FilterPanel>>;
 
   const mockBlogEntries: BlogEntry[] = [
     {
@@ -284,7 +284,7 @@ describe('FilterPanel', () => {
     });
 
     // Simulate collapsed state
-    const component = wrapper.vm as any;
+    const component = wrapper.vm;
     component.isCollapsed = true;
     await nextTick();
 
@@ -362,7 +362,7 @@ describe('FilterPanel', () => {
       props: defaultProps,
     });
 
-    const component = wrapper.vm as any;
+    const component = wrapper.vm;
     component.setInitialCollapsedState();
     await nextTick();
 

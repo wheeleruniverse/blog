@@ -1,6 +1,6 @@
 import BlogCard from '@/components/BlogCard.vue';
 import type { BlogEntry } from '@/types';
-import { mount } from '@vue/test-utils';
+import { mount, type VueWrapper } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { nextTick } from 'vue';
 
@@ -25,7 +25,7 @@ Object.defineProperty(window, 'location', {
 });
 
 describe('BlogCard', () => {
-  let wrapper: any;
+  let wrapper: VueWrapper<InstanceType<typeof BlogCard>>;
   const mockBlogEntry: BlogEntry = {
     slug: 'test-blog-post',
     name: 'Test Blog Post',
@@ -38,7 +38,7 @@ describe('BlogCard', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (navigator.clipboard.writeText as any) = vi.fn(() => Promise.resolve());
+    (navigator.clipboard.writeText as unknown) = vi.fn(() => Promise.resolve());
   });
 
   afterEach(() => {

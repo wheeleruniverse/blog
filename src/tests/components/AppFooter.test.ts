@@ -1,5 +1,5 @@
 import AppFooter from '@/components/AppFooter.vue';
-import { mount } from '@vue/test-utils';
+import { mount, type VueWrapper } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock window.scrollTo
@@ -9,7 +9,7 @@ Object.defineProperty(window, 'scrollTo', {
 });
 
 describe('AppFooter', () => {
-  let wrapper: any;
+  let wrapper: VueWrapper<InstanceType<typeof AppFooter>>;
 
   beforeEach(() => {
     vi.clearAllMocks();

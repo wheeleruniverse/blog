@@ -156,7 +156,7 @@ describe('BlogList', () => {
         filters: { ...defaultFilters, dateFrom: '2024-01-01' },
       },
     });
-    const component1 = wrapper1.vm as any;
+    const component1 = wrapper1.vm;
     expect(component1.hasActiveFilters).toBe(true);
 
     // Test showCollabOnly filter
@@ -166,7 +166,7 @@ describe('BlogList', () => {
         filters: { ...defaultFilters, showCollabOnly: true },
       },
     });
-    const component2 = wrapper2.vm as any;
+    const component2 = wrapper2.vm;
     expect(component2.hasActiveFilters).toBe(true);
 
     // Test no active filters
@@ -176,7 +176,7 @@ describe('BlogList', () => {
         filters: defaultFilters,
       },
     });
-    const component3 = wrapper3.vm as any;
+    const component3 = wrapper3.vm;
     expect(component3.hasActiveFilters).toBe(false);
   });
 
