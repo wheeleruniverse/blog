@@ -35,8 +35,14 @@
         </div>
 
         <!-- Filters -->
-        <div class="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out" :class="dynamicGridClass">
-          <div class="transition-all duration-300 ease-in-out" :class="filterPanelClass">
+        <div
+          class="grid grid-cols-1 gap-6 transition-all duration-300 ease-in-out"
+          :class="dynamicGridClass"
+        >
+          <div
+            class="transition-all duration-300 ease-in-out"
+            :class="filterPanelClass"
+          >
             <FilterPanel
               :filters="filters"
               :available-sources="availableSources"
@@ -46,7 +52,10 @@
             />
           </div>
 
-          <div class="transition-all duration-300 ease-in-out" :class="blogListClass">
+          <div
+            class="transition-all duration-300 ease-in-out"
+            :class="blogListClass"
+          >
             <!-- Error State -->
             <div
               v-if="error"

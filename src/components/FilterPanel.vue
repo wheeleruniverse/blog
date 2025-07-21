@@ -12,11 +12,11 @@
           class="p-1 rounded-md hover:bg-wheeler-gray-100 dark:hover:bg-wheeler-gray-700 transition-colors duration-200"
           :aria-label="isCollapsed ? 'Expand filters' : 'Collapse filters'"
         >
-          <ChevronDownIcon 
+          <ChevronDownIcon
             v-if="isCollapsed"
             class="w-5 h-5 text-wheeler-gray-500 dark:text-wheeler-gray-400"
           />
-          <ChevronUpIcon 
+          <ChevronUpIcon
             v-else
             class="w-5 h-5 text-wheeler-gray-500 dark:text-wheeler-gray-400"
           />
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Active Filters Display for Collapsed View -->
-    <div 
+    <div
       v-if="isCollapsed && hasActiveFilters"
       class="mt-4 transition-all duration-300 ease-in-out"
     >
@@ -89,157 +89,157 @@
       </div>
     </div>
 
-    <div 
+    <div
       class="overflow-hidden transition-all duration-300 ease-in-out"
       :class="isCollapsed ? 'max-h-0' : 'max-h-[2000px]'"
     >
       <div class="space-y-6">
         <!-- Date Filter -->
-      <div>
-        <label
-          class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
-        >
-          Time Period
-        </label>
-        <div class="grid grid-cols-2 gap-2">
-          <button
-            v-for="preset in datePresets"
-            :key="preset.value"
-            @click="setDatePreset(preset.value)"
-            :class="[
-              'px-3 py-2 text-sm font-medium rounded-md border transition-colors duration-200',
-              localFilters.datePreset === preset.value
-                ? 'bg-wheeler-purple-600 text-white border-wheeler-purple-600'
-                : 'bg-white dark:bg-wheeler-gray-700 text-wheeler-gray-700 dark:text-wheeler-gray-300 border-wheeler-gray-300 dark:border-wheeler-gray-600 hover:bg-wheeler-gray-50 dark:hover:bg-wheeler-gray-600',
-            ]"
-          >
-            {{ preset.label }}
-          </button>
-        </div>
-      </div>
-
-      <!-- Source Filter -->
-      <div v-if="availableSources.length > 0">
-        <label
-          class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
-        >
-          Source
-        </label>
-        <div class="space-y-2">
+        <div>
           <label
-            v-for="source in availableSources"
-            :key="source"
-            class="flex items-center"
+            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
           >
+            Time Period
+          </label>
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              v-for="preset in datePresets"
+              :key="preset.value"
+              @click="setDatePreset(preset.value)"
+              :class="[
+                'px-3 py-2 text-sm font-medium rounded-md border transition-colors duration-200',
+                localFilters.datePreset === preset.value
+                  ? 'bg-wheeler-purple-600 text-white border-wheeler-purple-600'
+                  : 'bg-white dark:bg-wheeler-gray-700 text-wheeler-gray-700 dark:text-wheeler-gray-300 border-wheeler-gray-300 dark:border-wheeler-gray-600 hover:bg-wheeler-gray-50 dark:hover:bg-wheeler-gray-600',
+              ]"
+            >
+              {{ preset.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Source Filter -->
+        <div v-if="availableSources.length > 0">
+          <label
+            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
+          >
+            Source
+          </label>
+          <div class="space-y-2">
+            <label
+              v-for="source in availableSources"
+              :key="source"
+              class="flex items-center"
+            >
+              <input
+                v-model="localFilters.sources"
+                :value="source"
+                type="checkbox"
+                class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+              />
+              <span
+                class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+              >
+                {{ source }}
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Collaboration Filter -->
+        <div>
+          <label class="flex items-center">
             <input
-              v-model="localFilters.sources"
-              :value="source"
+              v-model="localFilters.showCollabOnly"
               type="checkbox"
               class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
             />
             <span
               class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
             >
-              {{ source }}
+              Show collaborations only
             </span>
           </label>
         </div>
-      </div>
 
-      <!-- Collaboration Filter -->
-      <div>
-        <label class="flex items-center">
-          <input
-            v-model="localFilters.showCollabOnly"
-            type="checkbox"
-            class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
-          />
-          <span
-            class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
-          >
-            Show collaborations only
-          </span>
-        </label>
-      </div>
-
-      <!-- Video Filter -->
-      <div>
-        <label class="flex items-center">
-          <input
-            v-model="localFilters.showVideoOnly"
-            type="checkbox"
-            class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
-          />
-          <span
-            class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
-          >
-            Show videos only
-          </span>
-        </label>
-      </div>
-
-      <!-- Active Filters Display -->
-      <div
-        v-if="hasActiveFilters"
-        class="pt-4 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700"
-      >
-        <h4
-          class="text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
-        >
-          Active Filters:
-        </h4>
-        <div class="flex flex-wrap gap-2">
-          <span
-            v-if="localFilters.datePreset"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
-          >
-            {{ getDatePresetLabel(localFilters.datePreset) }}
-            <button
-              @click="setDatePreset('')"
-              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+        <!-- Video Filter -->
+        <div>
+          <label class="flex items-center">
+            <input
+              v-model="localFilters.showVideoOnly"
+              type="checkbox"
+              class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+            />
+            <span
+              class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
             >
-              <XMarkIcon class="w-3 h-3" />
-            </button>
-          </span>
-          <span
-            v-for="source in localFilters.sources"
-            :key="source"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
-          >
-            {{ source }}
-            <button
-              @click="removeSource(source)"
-              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
-            >
-              <XMarkIcon class="w-3 h-3" />
-            </button>
-          </span>
-          <span
-            v-if="localFilters.showCollabOnly"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
-          >
-            Collaborations only
-            <button
-              @click="localFilters.showCollabOnly = false"
-              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
-            >
-              <XMarkIcon class="w-3 h-3" />
-            </button>
-          </span>
-          <span
-            v-if="localFilters.showVideoOnly"
-            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
-          >
-            Videos only
-            <button
-              @click="localFilters.showVideoOnly = false"
-              class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
-            >
-              <XMarkIcon class="w-3 h-3" />
-            </button>
-          </span>
+              Show videos only
+            </span>
+          </label>
         </div>
-      </div>
+
+        <!-- Active Filters Display -->
+        <div
+          v-if="hasActiveFilters"
+          class="pt-4 border-t border-wheeler-gray-200 dark:border-wheeler-gray-700"
+        >
+          <h4
+            class="text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
+          >
+            Active Filters:
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-if="localFilters.datePreset"
+              class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+            >
+              {{ getDatePresetLabel(localFilters.datePreset) }}
+              <button
+                @click="setDatePreset('')"
+                class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+              >
+                <XMarkIcon class="w-3 h-3" />
+              </button>
+            </span>
+            <span
+              v-for="source in localFilters.sources"
+              :key="source"
+              class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+            >
+              {{ source }}
+              <button
+                @click="removeSource(source)"
+                class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+              >
+                <XMarkIcon class="w-3 h-3" />
+              </button>
+            </span>
+            <span
+              v-if="localFilters.showCollabOnly"
+              class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+            >
+              Collaborations only
+              <button
+                @click="localFilters.showCollabOnly = false"
+                class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+              >
+                <XMarkIcon class="w-3 h-3" />
+              </button>
+            </span>
+            <span
+              v-if="localFilters.showVideoOnly"
+              class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200"
+            >
+              Videos only
+              <button
+                @click="localFilters.showVideoOnly = false"
+                class="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full hover:bg-wheeler-coral-200 dark:hover:bg-wheeler-coral-800"
+              >
+                <XMarkIcon class="w-3 h-3" />
+              </button>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -248,7 +248,11 @@
 <script setup lang="ts">
 import { computed, watch, ref, onMounted } from 'vue';
 import type { FilterOptions, BlogEntry } from '@/types';
-import { XMarkIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/outline';
+import {
+  XMarkIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@heroicons/vue/24/outline';
 
 interface Props {
   filters: FilterOptions;

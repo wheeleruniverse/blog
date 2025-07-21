@@ -11,7 +11,7 @@
       <input
         v-model="searchQuery"
         type="text"
-        placeholder="Search blog posts..."
+        :placeholder="placeholder"
         class="block w-full pl-10 pr-10 py-3 text-wheeler-gray-900 dark:text-white placeholder-wheeler-gray-500 dark:placeholder-wheeler-gray-400 bg-white dark:bg-wheeler-gray-800 border border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded-lg focus:ring-2 focus:ring-wheeler-purple-500 focus:border-wheeler-purple-500 dark:focus:ring-wheeler-purple-400 transition-colors duration-200"
         :aria-label="searchAriaLabel"
       />
