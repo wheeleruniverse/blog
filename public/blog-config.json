@@ -16,6 +16,15 @@
   "data": [
     {
       "collab": false,
+      "date": "2025-07-23",
+      "name": "Conquering the Multi-Cloud Resume Challenge: My Journey to a Serverless Showcase",
+      "slug": "multi-cloud-serverless-showcase",
+      "source": "https://dev.to/wheeleruniverse/conquering-the-multi-cloud-resume-challenge-my-journey-to-a-serverless-showcase-5a6c",
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/multicloud-resume"
+    },
+    {
+      "collab": false,
       "date": "2025-07-08",
       "name": "From Dusty Requirements to Live Website: How Claude Code Built My Blog Aggregator in a Single Day",
       "slug": "claude-code-blog-aggregator",
@@ -154,8 +163,7 @@
       "name": "Meta Resume Challenge",
       "slug": "meta-resume-challenge",
       "source": "https://dev.to/wheeleruniverse/meta-resume-challenge-5a1a",
-      "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/multicloud-resume"
+      "sourceDisplayName": "Dev.to (Personal)"
     },
     {
       "collab": false,
