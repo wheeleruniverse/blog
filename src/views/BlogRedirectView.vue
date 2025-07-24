@@ -106,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 import { useBlogData } from '@/composables/useBlogData';
@@ -121,33 +121,7 @@ const { createBlogPostMetaTags } = useMetaTags();
 
 const blogEntry = ref<BlogEntry | null>(null);
 
-// Load blog data and set meta tags during SSR
-const slug = route.params.slug as string;
-
-// For SSR, we need to load the blog config directly (non-async)
-const loadSSRBlogData = async () => {
-  if (typeof window === 'undefined') {
-    try {
-      // Server-side: load blog config directly from file system
-      const fs = await import('fs/promises');
-      const path = await import('path');
-      const configPath = path.resolve(process.cwd(), 'public/blog-config.json');
-      const configData = await fs.readFile(configPath, 'utf-8');
-      const blogConfig = JSON.parse(configData);
-
-      const entry = blogConfig.data.find((item: BlogEntry) => item.slug === slug);
-      if (entry) {
-        blogEntry.value = entry;
-        createBlogPostMetaTags(entry);
-      }
-    } catch (error) {
-      console.error('Failed to load blog config during SSR:', error);
-    }
-  }
-};
-
-// Initialize SSR data immediately
-loadSSRBlogData();
+// Blog data will be loaded client-side in initializeRedirect
 const countdown = ref(5);
 const loading = ref(true);
 const error = ref(false);
@@ -200,9 +174,6 @@ const initializeRedirect = async (): Promise<void> => {
     if (entry) {
       blogEntry.value = entry;
 
-      // Update meta tags for this specific blog post
-      createBlogPostMetaTags(entry);
-
       loading.value = false;
 
       // Start automatic redirect countdown
@@ -231,6 +202,27 @@ const initializeRedirect = async (): Promise<void> => {
     }, 3000);
   }
 };
+
+// Watch for blogEntry changes and update meta tags
+watch(
+  blogEntry,
+  entry => {
+    if (entry) {
+      try {
+        createBlogPostMetaTags(entry);
+      } catch (error) {
+        console.debug(error);
+
+        // Meta tags will be handled by build-time post-processing for production
+        // This error is expected in development mode
+        if (import.meta.env.DEV) {
+          console.debug('Meta tags will be set during build process');
+        }
+      }
+    }
+  },
+  { immediate: true }
+);
 
 onMounted(async () => {
   // Theme initialization moved to App.vue
