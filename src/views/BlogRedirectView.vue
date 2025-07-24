@@ -124,25 +124,30 @@ const blogEntry = ref<BlogEntry | null>(null);
 // Load blog data and set meta tags during SSR
 const slug = route.params.slug as string;
 
-// For SSR, we need to load the blog config directly
-if (typeof window === 'undefined') {
-  try {
-    // Server-side: load blog config directly from file system
-    const fs = await import('fs/promises');
-    const path = await import('path');
-    const configPath = path.resolve(process.cwd(), 'public/blog-config.json');
-    const configData = await fs.readFile(configPath, 'utf-8');
-    const blogConfig = JSON.parse(configData);
+// For SSR, we need to load the blog config directly (non-async)
+const loadSSRBlogData = async () => {
+  if (typeof window === 'undefined') {
+    try {
+      // Server-side: load blog config directly from file system
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      const configPath = path.resolve(process.cwd(), 'public/blog-config.json');
+      const configData = await fs.readFile(configPath, 'utf-8');
+      const blogConfig = JSON.parse(configData);
 
-    const entry = blogConfig.data.find((item: BlogEntry) => item.slug === slug);
-    if (entry) {
-      blogEntry.value = entry;
-      createBlogPostMetaTags(entry);
+      const entry = blogConfig.data.find((item: BlogEntry) => item.slug === slug);
+      if (entry) {
+        blogEntry.value = entry;
+        createBlogPostMetaTags(entry);
+      }
+    } catch (error) {
+      console.error('Failed to load blog config during SSR:', error);
     }
-  } catch (error) {
-    console.error('Failed to load blog config during SSR:', error);
   }
-}
+};
+
+// Initialize SSR data immediately
+loadSSRBlogData();
 const countdown = ref(5);
 const loading = ref(true);
 const error = ref(false);
@@ -169,6 +174,20 @@ const startCountdown = (): void => {
 
 const initializeRedirect = async (): Promise<void> => {
   try {
+    // If blogEntry is already set from SSR, just start the redirect process
+    if (blogEntry.value) {
+      loading.value = false;
+
+      // Start automatic redirect countdown
+      redirectTimer = setTimeout(() => {
+        redirectNow();
+      }, 5000);
+
+      startCountdown();
+      return;
+    }
+
+    // Client-side initialization
     loading.value = true;
     const slug = route.params.slug as string;
 
