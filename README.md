@@ -2,30 +2,37 @@
 
 # Wheeler Universe Blog
 
-A modern blog aggregation website built with Vue 3, TypeScript, and Tailwind CSS. This application aggregates blog posts from multiple platforms under the Wheeler Universe brand.
+A modern blog aggregation website built with Vue 3, TypeScript, and Tailwind CSS using Static Site Generation (SSG). This application aggregates blog posts from multiple platforms under the Wheeler Universe brand with optimized SEO and social media sharing capabilities.
 
 ## 🚀 Features
 
+- **Static Site Generation** - Pre-rendered pages for optimal performance and SEO
+- **Content-Aware URLs** - Semantic `/read/` and `/watch/` URLs based on content type
+- **Dynamic Meta Tags** - Blog-specific SEO meta tags for social media sharing
 - **Single View Listing** - Main page displays all blog entries in one place
 - **JSON-Driven Content** - Blog data loaded from static JSON configuration
-- **External Redirects** - Blog entries redirect to original posts on external sites
-- **Custom URLs** - Customizable slugs for each blog entry with seamless redirects
+- **Elegant Redirects** - Beautiful redirect pages with countdown and manual options
+- **Video Content Support** - Special handling for video content with `/watch/` URLs
 - **Advanced Filtering** - Filter by date range, source platform, and collaboration status
 - **Real-time Search** - Search functionality by blog title
 - **Dark/Light Mode** - Theme toggle with user preference persistence
 - **Responsive Design** - Mobile-first approach with smooth animations
 - **TypeScript** - Full type safety throughout the application
-- **Modern Stack** - Vue 3 Composition API, Vite, Tailwind CSS
+- **Modern Stack** - Vue 3 Composition API, Vite SSG, Tailwind CSS
 
 ## 🛠 Tech Stack
 
 - **Frontend Framework:** Vue 3 with Composition API
+- **Static Site Generation:** Vite SSG (vite-ssg)
+- **Meta Tags:** @unhead/vue for SEO optimization
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Build Tool:** Vite
 - **Routing:** Vue Router
+- **Testing:** Vitest + Vue Test Utils
 - **Code Quality:** ESLint + Prettier
 - **Icons:** Heroicons
+- **Deployment:** Netlify with automatic deployments
 
 ## 🏗 Project Structure
 
@@ -41,15 +48,20 @@ src/
 │   └── ThemeToggle.vue # Dark/light mode switcher
 ├── composables/        # Vue composition utilities
 │   ├── useBlogData.ts  # Blog data management
+│   ├── useMetaTags.ts  # SEO meta tag management
 │   └── useTheme.ts     # Theme state management
 ├── router/             # Vue Router configuration
 ├── types/              # TypeScript type definitions
 ├── views/              # Page components
 │   ├── HomeView.vue    # Main blog listing page
-│   ├── BlogRedirectView.vue # Blog redirect handling
+│   ├── BlogRedirectView.vue # Blog redirect with SEO meta tags
 │   └── NotFoundView.vue     # 404 error page
+├── tests/              # Test files
+│   ├── AllComponents.test.ts    # Integration tests
+│   └── components/     # Component-specific tests
+├── utils/              # Utility functions
 ├── style.css           # Global styles and Tailwind imports
-└── main.ts             # Application entry point
+└── main.ts             # ViteSSG application entry point
 ```
 
 ## 🚀 Getting Started
@@ -74,14 +86,28 @@ npm run dev
 
 ### Building for Production
 
+The application uses Static Site Generation (SSG) to pre-render all pages:
+
 ```bash
 npm run build
 ```
 
-### Preview Production Build
+This generates:
+- Static HTML files with blog-specific meta tags
+- Optimized assets and CSS
+- Content-aware routes (`/read/` and `/watch/`)
+- Netlify redirect configuration
+
+### Development Scripts
 
 ```bash
-npm run preview
+npm run dev          # Start development server
+npm run build        # Build for production with SSG
+npm run build:clean  # Full clean build with linting and tests
+npm run preview      # Preview production build
+npm run test         # Run test suite
+npm run lint         # Run ESLint
+npm run prettier:write # Format code
 ```
 
 ## 📝 Configuration
@@ -104,7 +130,10 @@ Blog posts are configured in `public/blog-config.json`:
       "date": "2024-05-09",
       "name": "Blog Post Title",
       "slug": "blog-post-slug",
-      "source": "https://example.com/blog-post"
+      "source": "https://example.com/blog-post",
+      "sourceDisplayName": "Example Site",
+      "video": false,
+      "github": "https://github.com/user/repo"
     }
   ]
 }
@@ -114,8 +143,13 @@ Blog posts are configured in `public/blog-config.json`:
 
 1. Add a new entry to the `data` array in `public/blog-config.json`
 2. Include all required fields: `date`, `name`, `slug`, `source`
-3. Optional fields: `collab` (for collaborative posts)
-4. The application will automatically pick up the changes
+3. Optional fields:
+   - `collab` - Mark as collaborative post (shows collaboration badge)
+   - `video` - Mark as video content (uses `/watch/` URL and shows video badge)
+   - `sourceDisplayName` - Custom display name for the source
+   - `github` - Associated GitHub repository URL
+4. The build process automatically generates routes and meta tags
+5. URLs will be content-aware: `/read/slug` for articles, `/watch/slug` for videos
 
 ### Feature Flags
 
@@ -155,11 +189,29 @@ colors: {
 ### Code Quality
 
 - **Linting:** `npm run lint`
-- **Formatting:** `npm run format`
+- **Formatting:** `npm run prettier:write`
+- **Testing:** `npm run test`
+- **Full Pipeline:** `npm run build:clean`
 
 ### Type Checking
 
 TypeScript compilation: `npm run build` (includes type checking)
+
+### SEO and Meta Tags
+
+The application automatically generates:
+- Blog-specific meta tags for each post
+- Open Graph tags for social media sharing
+- Twitter Card optimization
+- Content-aware canonical URLs
+- Dynamic page titles and descriptions
+
+### URL Structure
+
+- **Home:** `/` - Main blog listing
+- **Articles:** `/read/{slug}` - Reading content with redirect page
+- **Videos:** `/watch/{slug}` - Video content with redirect page
+- **Static Generation:** All routes pre-rendered at build time
 
 ## 📱 Responsive Design
 
@@ -179,12 +231,29 @@ The application is built mobile-first with responsive breakpoints:
 
 ## 🚀 Deployment
 
-The application generates static files that can be deployed to any static hosting service:
+The application uses Static Site Generation and can be deployed to any static hosting service:
 
-- **Netlify** - Drop the `dist` folder
-- **Vercel** - Connect your Git repository
-- **GitHub Pages** - Upload build artifacts
-- **AWS S3 + CloudFront** - Static website hosting
+### Netlify (Recommended)
+- Automatic deployments on Git push
+- Pre-configured build settings
+- Built-in SPA routing support
+- Custom domain and HTTPS
+- Branch previews
+
+### Other Platforms
+- **Vercel** - Connect your Git repository with auto-deploy
+- **GitHub Pages** - Upload `dist` folder from build process
+- **AWS S3 + CloudFront** - Static website hosting with CDN
+- **Any Static Host** - Upload the generated `dist` folder
+
+### Build Process
+
+The SSG build automatically:
+1. Generates static HTML files for all blog routes
+2. Injects blog-specific meta tags for SEO
+3. Creates content-aware URLs (`/read/` and `/watch/`)
+4. Optimizes assets and generates sourcemaps
+5. Creates Netlify `_redirects` file for SPA routing
 
 ## 📄 License
 
