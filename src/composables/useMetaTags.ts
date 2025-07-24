@@ -3,13 +3,8 @@ import type { BlogEntry } from '@/types';
 interface MetaTagConfig {
   title: string;
   description: string;
-  ogTitle: string;
-  ogDescription: string;
-  ogImage: string;
-  ogUrl: string;
-  twitterTitle: string;
-  twitterDescription: string;
-  twitterImage: string;
+  image: string;
+  url: string;
 }
 
 export function useMetaTags() {
@@ -41,19 +36,16 @@ export function useMetaTags() {
     updateMetaTag('meta[name="description"]', config.description);
 
     // Update Open Graph tags
-    updateMetaTag('meta[property="og:title"]', config.ogTitle);
-    updateMetaTag('meta[property="og:description"]', config.ogDescription);
-    updateMetaTag('meta[property="og:image"]', config.ogImage);
-    updateMetaTag('meta[property="og:url"]', config.ogUrl);
+    updateMetaTag('meta[property="og:title"]', config.title);
+    updateMetaTag('meta[property="og:description"]', config.description);
+    updateMetaTag('meta[property="og:image"]', config.image);
+    updateMetaTag('meta[property="og:url"]', config.url);
 
     // Update Twitter Card tags
-    updateMetaTag('meta[property="twitter:title"]', config.twitterTitle);
-    updateMetaTag(
-      'meta[property="twitter:description"]',
-      config.twitterDescription
-    );
-    updateMetaTag('meta[property="twitter:image"]', config.twitterImage);
-    updateMetaTag('meta[property="twitter:url"]', config.ogUrl);
+    updateMetaTag('meta[property="twitter:title"]', config.title);
+    updateMetaTag('meta[property="twitter:description"]', config.description);
+    updateMetaTag('meta[property="twitter:image"]', config.image);
+    updateMetaTag('meta[property="twitter:url"]', config.url);
   };
 
   const createBlogPostMetaTags = (blogEntry: BlogEntry): MetaTagConfig => {
@@ -67,13 +59,8 @@ export function useMetaTags() {
     return {
       title: `${blogEntry.name} - Wheeler Universe Blog`,
       description,
-      ogTitle: blogEntry.name,
-      ogDescription: description,
-      ogImage: defaultImage,
-      ogUrl: blogUrl,
-      twitterTitle: blogEntry.name,
-      twitterDescription: description,
-      twitterImage: defaultImage,
+      image: defaultImage,
+      url: blogUrl,
     };
   };
 
@@ -85,13 +72,8 @@ export function useMetaTags() {
     return {
       title: 'Wheeler Universe Blog',
       description: defaultDescription,
-      ogTitle: 'Wheeler Universe Blog',
-      ogDescription: defaultDescription,
-      ogImage: `${baseUrl}/wheeler-logo.jpg`,
-      ogUrl: baseUrl,
-      twitterTitle: 'Wheeler Universe Blog',
-      twitterDescription: defaultDescription,
-      twitterImage: `${baseUrl}/wheeler-logo.jpg`,
+      image: `${baseUrl}/wheeler-logo.jpg`,
+      url: baseUrl,
     };
   };
 
