@@ -110,6 +110,7 @@
 import { onMounted, computed, ref } from 'vue';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 import { useBlogData } from '@/composables/useBlogData';
+import { useMetaTags } from '@/composables/useMetaTags';
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
 import SearchBar from '@/components/SearchBar.vue';
@@ -130,6 +131,8 @@ const {
   filteredBlogEntries,
   availableSources,
 } = useBlogData();
+
+const { resetToDefaultMetaTags } = useMetaTags();
 
 // Theme is now initialized at app level
 
@@ -187,6 +190,8 @@ const retryLoad = () => {
 
 onMounted(async () => {
   // Theme initialization moved to App.vue
+  // Ensure default meta tags are set when returning to home
+  resetToDefaultMetaTags();
   await loadBlogData();
 });
 </script>

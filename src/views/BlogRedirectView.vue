@@ -110,12 +110,14 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 import { useBlogData } from '@/composables/useBlogData';
+import { useMetaTags } from '@/composables/useMetaTags';
 import type { BlogEntry } from '@/types';
 import { formatDate, getDomainFromUrl } from '@/utils';
 
 const route = useRoute();
 const router = useRouter();
 const { loadBlogData, findBlogBySlug } = useBlogData();
+const { updateBlogPostMetaTags, resetToDefaultMetaTags } = useMetaTags();
 // Theme is now initialized at app level
 
 const blogEntry = ref<BlogEntry | null>(null);
@@ -157,6 +159,10 @@ const initializeRedirect = async (): Promise<void> => {
     if (entry) {
       blogEntry.value = entry;
       document.title = `${entry.name} - Wheeler Universe`;
+
+      // Update meta tags for this specific blog post
+      updateBlogPostMetaTags(entry);
+
       loading.value = false;
 
       // Start automatic redirect countdown
@@ -199,5 +205,8 @@ onUnmounted(() => {
   if (countdownTimer) {
     clearInterval(countdownTimer);
   }
+
+  // Reset meta tags when leaving the page
+  resetToDefaultMetaTags();
 });
 </script>
