@@ -4,7 +4,8 @@ import { useHead } from '@unhead/vue';
 export function useMetaTags() {
   const createBlogPostMetaTags = (blogEntry: BlogEntry) => {
     const baseUrl = 'https://blog.wheeleruniverse.com';
-    const blogUrl = `${baseUrl}/blog/${blogEntry.slug}`;
+    const prefix = blogEntry.video ? '/watch' : '/read';
+    const blogUrl = `${baseUrl}${prefix}/${blogEntry.slug}`;
     const defaultImage = `${baseUrl}/wheeler-logo.jpg`;
 
     // Generate description from blog title and metadata

@@ -174,7 +174,7 @@ describe('Vue Component Tests', () => {
       expect(wrapper.text()).toContain('Test Blog Post');
       expect(wrapper.text()).toContain('Formatted: 2024-01-01');
       expect(wrapper.text()).toContain('Example Site');
-      expect(wrapper.find('a[href="/blog/test-blog-post"]').exists()).toBe(
+      expect(wrapper.find('a[href="/read/test-blog-post"]').exists()).toBe(
         true
       );
     });

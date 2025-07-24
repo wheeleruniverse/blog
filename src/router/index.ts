@@ -15,11 +15,19 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/blog/:slug',
-    name: 'BlogRedirect',
+    path: '/read/:slug',
+    name: 'ReadRedirect',
     component: () => import('@/views/BlogRedirectView.vue'),
     meta: {
-      title: 'Redirecting...',
+      title: 'Redirecting to article...',
+    },
+  },
+  {
+    path: '/watch/:slug',
+    name: 'WatchRedirect',
+    component: () => import('@/views/BlogRedirectView.vue'),
+    meta: {
+      title: 'Redirecting to video...',
     },
   },
   {

@@ -24,7 +24,10 @@ export default defineConfig({
         
         const routes = [
           '/',
-          ...blogConfig.data.map(entry => `/blog/${entry.slug}`)
+          ...blogConfig.data.map(entry => {
+            const prefix = entry.video ? '/watch' : '/read';
+            return `${prefix}/${entry.slug}`;
+          })
         ]
         
         // Generate _redirects file for Netlify SPA routing
