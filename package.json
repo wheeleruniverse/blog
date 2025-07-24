@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vue-tsc && vite-ssg build",
+    "build:clean": "npm run prettier:write && npm run lint && npm run test && npm run build",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -19,6 +20,8 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.2.0",
+    "@unhead/vue": "^2.0.12",
+    "vite-ssg": "^28.0.0",
     "vue": "^3.4.0",
     "vue-router": "^4.2.5"
   },

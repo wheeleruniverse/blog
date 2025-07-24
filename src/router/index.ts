@@ -1,7 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createMemoryHistory,
+  createRouter,
+  createWebHistory,
+} from 'vue-router';
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
@@ -11,7 +15,7 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/:slug',
+    path: '/blog/:slug',
     name: 'BlogRedirect',
     component: () => import('@/views/BlogRedirectView.vue'),
     meta: {
@@ -29,7 +33,10 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history:
+    typeof window !== 'undefined'
+      ? createWebHistory(import.meta.env.BASE_URL)
+      : createMemoryHistory(),
   routes,
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) {
@@ -45,12 +52,14 @@ const router = createRouter({
   },
 });
 
-// Global navigation guards
-router.beforeEach(to => {
-  // Update document title
-  if (to.meta.title) {
-    document.title = to.meta.title as string;
-  }
-});
+// Global navigation guards - only apply in client mode
+if (typeof window !== 'undefined') {
+  router.beforeEach(to => {
+    // Update document title
+    if (to.meta.title) {
+      document.title = to.meta.title as string;
+    }
+  });
+}
 
 export default router;

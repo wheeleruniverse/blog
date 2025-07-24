@@ -55,7 +55,7 @@ describe('BlogCard', () => {
     expect(wrapper.text()).toContain('Test Blog Post');
     expect(wrapper.text()).toContain('Formatted: 2024-01-01');
     expect(wrapper.text()).toContain('Example Site');
-    expect(wrapper.find('a[href="/test-blog-post"]').exists()).toBe(true);
+    expect(wrapper.find('a[href="/blog/test-blog-post"]').exists()).toBe(true);
   });
 
   it('displays source domain when sourceDisplayName is not provided', () => {
@@ -134,7 +134,7 @@ describe('BlogCard', () => {
     await copyButton.trigger('click');
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-      'https://localhost:3000/test-blog-post'
+      'https://localhost:3000/blog/test-blog-post'
     );
   });
 
@@ -162,10 +162,10 @@ describe('BlogCard', () => {
     expect(copyButton.exists()).toBe(true);
     expect(copyButton.attributes('aria-label')).toBeTruthy();
 
-    const readMoreLink = wrapper.find('a[href="/test-blog-post"]');
+    const readMoreLink = wrapper.find('a[href="/blog/test-blog-post"]');
     expect(readMoreLink.exists()).toBe(true);
     // Some links might not have aria-label, so just check they exist
-    expect(readMoreLink.attributes('href')).toBe('/test-blog-post');
+    expect(readMoreLink.attributes('href')).toBe('/blog/test-blog-post');
 
     const timeElement = wrapper.find('time');
     expect(timeElement.exists()).toBe(true);
@@ -192,7 +192,7 @@ describe('BlogCard', () => {
       props: { entry: mockBlogEntry },
     });
 
-    const titleLink = wrapper.find('a[href="/test-blog-post"]');
+    const titleLink = wrapper.find('a[href="/blog/test-blog-post"]');
     expect(titleLink.exists()).toBe(true);
     expect(titleLink.classes()).toContain('text-lg');
     expect(titleLink.classes()).toContain('sm:text-xl');
@@ -209,12 +209,12 @@ describe('BlogCard', () => {
     });
 
     // Check that both title link and read more button link to correct URL
-    const titleLink = wrapper.find('a[href="/test-blog-post"]');
+    const titleLink = wrapper.find('a[href="/blog/test-blog-post"]');
     const readMoreButton = wrapper.find('a[aria-label="Read Test Blog Post"]');
 
     expect(titleLink.exists()).toBe(true);
     expect(readMoreButton.exists()).toBe(true);
-    expect(readMoreButton.attributes('href')).toBe('/test-blog-post');
+    expect(readMoreButton.attributes('href')).toBe('/blog/test-blog-post');
   });
 
   it('displays formatted date correctly', () => {

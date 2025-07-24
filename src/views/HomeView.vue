@@ -132,7 +132,7 @@ const {
   availableSources,
 } = useBlogData();
 
-const { resetToDefaultMetaTags } = useMetaTags();
+const { createDefaultMetaTags } = useMetaTags();
 
 // Theme is now initialized at app level
 
@@ -191,7 +191,7 @@ const retryLoad = () => {
 onMounted(async () => {
   // Theme initialization moved to App.vue
   // Ensure default meta tags are set when returning to home
-  resetToDefaultMetaTags();
+  createDefaultMetaTags();
   await loadBlogData();
 });
 </script>
