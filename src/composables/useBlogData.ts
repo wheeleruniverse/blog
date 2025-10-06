@@ -7,26 +7,27 @@ import type {
 } from '@/types';
 import { computed, ref, type Ref } from 'vue';
 
+// Singleton state - created once and reused across all calls
+const blogConfig: Ref<BlogConfig | null> = ref(null);
+const loading: Ref<LoadingState> = ref('idle');
+const error: Ref<AppError | null> = ref(null);
+
+const filters: Ref<FilterOptions> = ref({
+  search: '',
+  dateFrom: '',
+  dateTo: '',
+  datePreset: '',
+  sources: [],
+  tags: [],
+  showCollabOnly: false,
+  showVideoOnly: false,
+  showGithubOnly: false,
+});
+
+// Toggle for specific vs. broad tag display
+const useSpecificTags = ref(true);
+
 export function useBlogData() {
-  const blogConfig: Ref<BlogConfig | null> = ref(null);
-  const loading: Ref<LoadingState> = ref('idle');
-  const error: Ref<AppError | null> = ref(null);
-
-  const filters: Ref<FilterOptions> = ref({
-    search: '',
-    dateFrom: '',
-    dateTo: '',
-    datePreset: '',
-    sources: [],
-    tags: [],
-    showCollabOnly: false,
-    showVideoOnly: false,
-    showGithubOnly: false,
-  });
-
-  // Toggle for specific vs. broad tag display
-  const useSpecificTags = ref(true);
-
   // Get tag mapping from config
   const tagMapping = computed(() => {
     return blogConfig.value?.tags?.mappings || {};
