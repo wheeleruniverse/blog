@@ -29,7 +29,7 @@
       "source": "https://dev.to/wheeleruniverse/conquering-the-multi-cloud-resume-challenge-my-journey-to-a-serverless-showcase-5a6c",
       "sourceDisplayName": "Dev.to (Personal)",
       "github": "https://github.com/wheeleruniverse/multicloud-resume",
-      "tags": ["AWS", "Azure", "GCP", "Terraform", "IaC"]
+      "tags": ["AWS", "Azure", "GCP", "Terraform", "Serverless"]
     },
     {
       "date": "2025-07-08",
@@ -79,7 +79,7 @@
       "date": "2024-02-12",
       "name": "Getting Hands-on with Blazor, Next.js and Vercel",
       "slug": "hands-on-blazor-nextjs-vercel",
-      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-vercel-gg0",
+      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-and-vercel-gg0",
       "sourceDisplayName": "Dev.to (Personal)",
       "github": "https://github.com/wheeleruniverse/cgc-resume-from-json",
       "tags": ["C#", "TypeScript", "Next.js", "Blazor", "Vercel"]
@@ -183,7 +183,7 @@
       "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj",
       "sourceDisplayName": "Dev.to (Personal)",
       "github": "https://github.com/wheeleruniverse/cgc-gcp-resume",
-      "tags": ["GCP", "Terraform", "Cloud Functions", "IaC"]
+      "tags": ["GCP", "Terraform", "Cloud Functions", "Serverless"]
     },
     {
       "collab": true,
@@ -210,7 +210,7 @@
       "source": "https://dev.to/wheeleruniverse/apr-21-cloudguruchallenge-3fch",
       "sourceDisplayName": "Dev.to (Personal)",
       "github": "https://github.com/wheeleruniverse/cgc-azure-resume",
-      "tags": ["Azure", "C#", "Functions", ".NET"]
+      "tags": ["Azure", "Functions", "Terraform", "GitHub Actions", "Java"]
     },
     {
       "date": "2021-04-15",
@@ -268,7 +268,7 @@
       "source": "https://dev.to/wheeleruniverse/january-21-cloudguruchallenge-iaj",
       "sourceDisplayName": "Dev.to (Personal)",
       "github": "https://github.com/wheeleruniverse/cgc-multicloud-madness",
-      "tags": ["AWS", "Azure", "GCP", "Multi-Cloud", "IaC"]
+      "tags": ["AWS", "Azure", "GCP", "Multi-Cloud", "SAM"]
     },
     {
       "date": "2020-12-18",

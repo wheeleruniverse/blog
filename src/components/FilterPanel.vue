@@ -116,7 +116,7 @@
 
     <div
       class="overflow-hidden transition-all duration-300 ease-in-out"
-      :class="isCollapsed ? 'max-h-0' : 'max-h-[2000px]'"
+      :class="isCollapsed ? 'max-h-0' : 'max-h-[4000px]'"
     >
       <div class="space-y-6">
         <!-- Date Filter -->
@@ -192,7 +192,7 @@
         </div>
 
         <!-- Source Filter -->
-        <div v-if="availableSources.length > 0">
+        <div v-if="sortedAvailableSources.length > 0">
           <label
             class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
           >
@@ -200,7 +200,7 @@
           </label>
           <div class="space-y-2">
             <label
-              v-for="source in availableSources"
+              v-for="source in sortedAvailableSources"
               :key="source"
               class="flex items-center"
             >
@@ -214,6 +214,9 @@
                 class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
               >
                 {{ source }}
+                <span class="text-wheeler-gray-500 dark:text-wheeler-gray-400">
+                  ({{ sourceCounts[source] || 0 }})
+                </span>
               </span>
             </label>
           </div>
@@ -275,6 +278,11 @@
                       class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
                     >
                       {{ tag }}
+                      <span
+                        class="text-wheeler-gray-500 dark:text-wheeler-gray-400"
+                      >
+                        ({{ tagCounts[tag] || 0 }})
+                      </span>
                     </span>
                   </label>
                 </div>
@@ -434,6 +442,26 @@ const localFilters = computed({
   set: (value: FilterOptions) => emit('update:filters', value),
 });
 
+// Count how many blog posts have each source
+const sourceCounts = computed(() => {
+  const counts: Record<string, number> = {};
+  if (!props.allEntries) return counts;
+
+  props.allEntries.forEach(entry => {
+    const source = entry.sourceDisplayName;
+    if (source) {
+      counts[source] = (counts[source] || 0) + 1;
+    }
+  });
+
+  return counts;
+});
+
+// Sort sources alphabetically
+const sortedAvailableSources = computed(() => {
+  return [...props.availableSources].sort((a, b) => a.localeCompare(b));
+});
+
 // Get available years from data
 const availableYears = computed(() => {
   if (!props.allEntries || props.allEntries.length === 0) return [];
@@ -462,6 +490,22 @@ const datePresets = computed(() => {
   }));
 
   return [...staticPresets, ...yearPresets];
+});
+
+// Count how many blog posts have each tag
+const tagCounts = computed(() => {
+  const counts: Record<string, number> = {};
+  if (!props.allEntries) return counts;
+
+  props.allEntries.forEach(entry => {
+    if (entry.tags) {
+      entry.tags.forEach(tag => {
+        counts[tag] = (counts[tag] || 0) + 1;
+      });
+    }
+  });
+
+  return counts;
 });
 
 // Categorize tags for better UX (alphabetized)
@@ -513,7 +557,16 @@ const tagCategories = computed(() => {
     },
     {
       name: 'Infrastructure & DevOps',
-      tags: ['Terraform', 'IaC', 'CI/CD', 'DevOps', 'Docker', 'Containers'],
+      tags: [
+        'Terraform',
+        'IaC',
+        'CI/CD',
+        'DevOps',
+        'Docker',
+        'Containers',
+        'GitHub Actions',
+        'SAM',
+      ],
     },
     {
       name: 'Platforms',
@@ -521,7 +574,7 @@ const tagCategories = computed(() => {
     },
     {
       name: 'Programming Languages',
-      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP'],
+      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP', 'Java'],
     },
     {
       name: 'Technical Topics',
@@ -540,11 +593,17 @@ const tagCategories = computed(() => {
     },
   ];
 
-  // Filter each category to only include tags that are actually available, then sort alphabetically by category name
+  // Filter each category to only include tags that are actually available and have count > 0
+  // Sort categories alphabetically by name, and tags within each category alphabetically
   return categories
     .map(category => ({
       name: category.name,
-      tags: category.tags.filter(tag => props.availableTags.includes(tag)),
+      tags: category.tags
+        .filter(
+          tag =>
+            props.availableTags.includes(tag) && (tagCounts.value[tag] || 0) > 0
+        )
+        .sort((a, b) => a.localeCompare(b)),
     }))
     .filter(category => category.tags.length > 0)
     .sort((a, b) => a.name.localeCompare(b.name));

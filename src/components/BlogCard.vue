@@ -227,6 +227,8 @@ const getTagColorClass = (tag: string): string => {
     'C#': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
     'PHP':
       'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+    'Java':
+      'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
 
     // Frameworks & Tools
     'Vue':
@@ -247,6 +249,9 @@ const getTagColorClass = (tag: string): string => {
     'DevOps': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
     'Docker': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
     'Containers': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
+    'GitHub Actions':
+      'bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200',
+    'SAM': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
 
     // AWS Services
     'Lambda':
