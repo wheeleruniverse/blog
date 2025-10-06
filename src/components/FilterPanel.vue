@@ -422,7 +422,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 
 // Get tag conversion state and functions from composable
-const { useSpecificTags, convertTag, tagMapping } = useBlogData();
+const { useSpecificTags, convertTag, tagMapping, blogConfig } = useBlogData();
 
 const toggleTagMode = () => {
   useSpecificTags.value = !useSpecificTags.value;
@@ -552,92 +552,7 @@ const getTagCount = (tag: string): number => {
 
 // Categorize tags for better UX (alphabetized)
 const tagCategories = computed(() => {
-  const categories = [
-    {
-      name: 'AWS Services',
-      tags: [
-        'Lambda',
-        'S3',
-        'CloudFront',
-        'Route53',
-        'ECR',
-        'CloudWatch',
-        'X-Ray',
-        'SageMaker',
-        'Lightsail',
-      ],
-    },
-    {
-      name: 'Azure Services',
-      tags: ['Functions', '.NET', 'Azure Pipelines'],
-    },
-    {
-      name: 'Career & Learning',
-      tags: ['Certification', 'Career Development', 'Leadership', 'Learning'],
-    },
-    {
-      name: 'Cloud Providers',
-      tags: ['AWS', 'Azure', 'GCP'],
-    },
-    {
-      name: 'Concepts & Practices',
-      tags: [
-        'Serverless',
-        'AI',
-        'Machine Learning',
-        'Multi-Cloud',
-        'FinOps',
-        'Cost Optimization',
-        'ETL',
-        'Data Engineering',
-        'Cloud Strategy',
-      ],
-    },
-    {
-      name: 'Frameworks & Tools',
-      tags: ['Vue', 'Next.js', 'Blazor', 'Vite', 'Tailwind'],
-    },
-    {
-      name: 'GCP Services',
-      tags: ['Cloud Run', 'Cloud Functions', 'Firebase'],
-    },
-    {
-      name: 'Infrastructure & DevOps',
-      tags: [
-        'Terraform',
-        'IaC',
-        'CI/CD',
-        'DevOps',
-        'Docker',
-        'Containers',
-        'GitHub Actions',
-        'SAM',
-      ],
-    },
-    {
-      name: 'Platforms',
-      tags: ['Vercel', 'Bref', 'Claude', 'Pluralsight'],
-    },
-    {
-      name: 'Programming Languages',
-      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP', 'Java'],
-    },
-    {
-      name: 'Technical Topics',
-      tags: [
-        'Performance',
-        'Networking',
-        'Storage',
-        'CDN',
-        'DNS',
-        'Engineering',
-        'Hiring',
-        'Getting Started',
-        'Tech Industry',
-        'Cloud',
-      ],
-    },
-  ];
+  const categories = blogConfig.value?.tags?.categories || [];
 
   // Filter each category to only include tags that are actually available and have count > 0
   // Convert tags to broad or specific based on toggle
@@ -651,14 +566,20 @@ const tagCategories = computed(() => {
           // For specific mode: check if original tag exists and has count > 0
           // For broad mode: check if any of the mapped specific tags exist
           if (useSpecificTags.value) {
-            return props.availableTags.includes(tag) && (tagCounts.value[tag] || 0) > 0;
+            return (
+              props.availableTags.includes(tag) &&
+              (tagCounts.value[tag] || 0) > 0
+            );
           } else {
             const mapping = tagMapping || {};
             const specificTags = Object.entries(mapping)
               .filter(([_, broad]) => broad === tag)
               .map(([specific, _]) => specific);
             if (specificTags.length === 0) {
-              return props.availableTags.includes(tag) && (tagCounts.value[tag] || 0) > 0;
+              return (
+                props.availableTags.includes(tag) &&
+                (tagCounts.value[tag] || 0) > 0
+              );
             }
             return specificTags.some(
               specificTag =>

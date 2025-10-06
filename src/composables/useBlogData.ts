@@ -29,12 +29,12 @@ export function useBlogData() {
 
   // Get tag mapping from config
   const tagMapping = computed(() => {
-    return blogConfig.value?.tagMapping || {};
+    return blogConfig.value?.tags?.mappings || {};
   });
 
   // Convert tag to broad or specific based on toggle
   const convertTag = (tag: string): string => {
-    return useSpecificTags.value ? tag : (tagMapping.value[tag] || tag);
+    return useSpecificTags.value ? tag : tagMapping.value[tag] || tag;
   };
 
   // Get all specific tags that map to a broad category (for filtering)

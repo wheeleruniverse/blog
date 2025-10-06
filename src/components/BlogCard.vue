@@ -221,7 +221,7 @@ const copyLocalUrl = async (): Promise<void> => {
 
 // Map tags to color classes from config
 const getTagColorClass = (tag: string): string => {
-  const tagColorMap = blogConfig.value?.tagColors || {};
+  const tagColorMap = blogConfig.value?.tags?.colors || {};
   return (
     tagColorMap[tag] ||
     'bg-wheeler-gray-100 text-wheeler-gray-800 dark:bg-wheeler-gray-700 dark:text-wheeler-gray-200'
