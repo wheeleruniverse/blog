@@ -24,6 +24,30 @@ export function useBlogData() {
     showGithubOnly: false,
   });
 
+  // Toggle for specific vs. broad tag display
+  const useSpecificTags = ref(true);
+
+  // Get tag mapping from config
+  const tagMapping = computed(() => {
+    return blogConfig.value?.tagMapping || {};
+  });
+
+  // Convert tag to broad or specific based on toggle
+  const convertTag = (tag: string): string => {
+    return useSpecificTags.value ? tag : (tagMapping.value[tag] || tag);
+  };
+
+  // Get all specific tags that map to a broad category (for filtering)
+  const getSpecificTagsForBroad = (tagToCheck: string): string[] => {
+    if (useSpecificTags.value) return [tagToCheck];
+
+    const specificTags = Object.entries(tagMapping.value)
+      .filter(([_, broad]) => broad === tagToCheck)
+      .map(([specific, _]) => specific);
+
+    return specificTags.length > 0 ? specificTags : [tagToCheck];
+  };
+
   const loadBlogData = async (): Promise<void> => {
     loading.value = 'loading';
     error.value = null;
@@ -100,12 +124,16 @@ export function useBlogData() {
     }
 
     // Tags filter (OR logic - entry matches if it has ANY of the selected tags)
+    // When using broad tags, match against all specific tags that map to the broad category
     if (filters.value.tags.length > 0) {
       entries = entries.filter(entry => {
         if (!entry.tags || entry.tags.length === 0) return false;
-        return filters.value.tags.some(selectedTag =>
-          entry.tags!.includes(selectedTag)
-        );
+        return filters.value.tags.some(selectedTag => {
+          const specificTagsToMatch = getSpecificTagsForBroad(selectedTag);
+          return specificTagsToMatch.some(specificTag =>
+            entry.tags!.includes(specificTag)
+          );
+        });
       });
     }
 
@@ -168,5 +196,8 @@ export function useBlogData() {
     availableTags,
     isFeatureEnabled,
     findBlogBySlug,
+    useSpecificTags,
+    convertTag,
+    tagMapping,
   };
 }

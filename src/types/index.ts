@@ -1,5 +1,7 @@
 export interface BlogConfig {
   features: BlogFeature[];
+  tagMapping: Record<string, string>;
+  tagColors: Record<string, string>;
   data: BlogEntry[];
 }
 
