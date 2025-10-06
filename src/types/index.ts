@@ -1,6 +1,11 @@
 export interface BlogConfig {
   features: BlogFeature[];
   data: BlogEntry[];
+  tags: {
+    categories: Array<{ name: string; tags: string[] }>;
+    mappings: Record<string, string>;
+    colors: Record<string, string>;
+  };
 }
 
 export interface BlogFeature {

@@ -224,11 +224,24 @@
 
         <!-- Tags Filter (Grouped & Collapsible) -->
         <div v-if="availableTags.length > 0">
-          <label
-            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-3"
-          >
-            Tags
-          </label>
+          <div class="flex items-center justify-between mb-3">
+            <label
+              class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300"
+            >
+              Tags
+            </label>
+            <button
+              @click="toggleTagMode"
+              class="flex items-center gap-2 px-2 py-1 text-xs font-medium rounded-md bg-wheeler-gray-100 dark:bg-wheeler-gray-700 text-wheeler-gray-700 dark:text-wheeler-gray-300 hover:bg-wheeler-gray-200 dark:hover:bg-wheeler-gray-600 transition-colors duration-200"
+              :title="
+                useSpecificTags
+                  ? 'Switch to broad categories'
+                  : 'Switch to specific technologies'
+              "
+            >
+              {{ useSpecificTags ? 'Specific' : 'Broad' }}
+            </button>
+          </div>
           <div class="space-y-3">
             <div
               v-for="category in tagCategories"
@@ -281,7 +294,7 @@
                       <span
                         class="text-wheeler-gray-500 dark:text-wheeler-gray-400"
                       >
-                        ({{ tagCounts[tag] || 0 }})
+                        ({{ getTagCount(tag) }})
                       </span>
                     </span>
                   </label>
@@ -391,6 +404,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from '@heroicons/vue/24/outline';
+import { useBlogData } from '@/composables/useBlogData';
 
 interface Props {
   filters: FilterOptions;
@@ -406,6 +420,13 @@ interface Emits {
 
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
+
+// Get tag conversion state and functions from composable
+const { useSpecificTags, convertTag, tagMapping, blogConfig } = useBlogData();
+
+const toggleTagMode = () => {
+  useSpecificTags.value = !useSpecificTags.value;
+};
 
 // Collapsible state
 const isCollapsed = ref(false);
@@ -492,7 +513,7 @@ const datePresets = computed(() => {
   return [...staticPresets, ...yearPresets];
 });
 
-// Count how many blog posts have each tag
+// Count how many blog posts have each tag (specific tags)
 const tagCounts = computed(() => {
   const counts: Record<string, number> = {};
   if (!props.allEntries) return counts;
@@ -508,103 +529,74 @@ const tagCounts = computed(() => {
   return counts;
 });
 
+// Get count for a tag (specific or broad)
+const getTagCount = (tag: string): number => {
+  if (useSpecificTags.value) {
+    return tagCounts.value[tag] || 0;
+  } else {
+    const mapping = tagMapping || {};
+    const specificTags = Object.entries(mapping)
+      .filter(([_, broad]) => broad === tag)
+      .map(([specific, _]) => specific);
+
+    if (specificTags.length === 0) {
+      return tagCounts.value[tag] || 0;
+    }
+
+    return specificTags.reduce(
+      (sum, specificTag) => sum + (tagCounts.value[specificTag] || 0),
+      0
+    );
+  }
+};
+
 // Categorize tags for better UX (alphabetized)
 const tagCategories = computed(() => {
-  const categories = [
-    {
-      name: 'AWS Services',
-      tags: [
-        'Lambda',
-        'S3',
-        'CloudFront',
-        'Route53',
-        'ECR',
-        'CloudWatch',
-        'X-Ray',
-        'SageMaker',
-        'Lightsail',
-      ],
-    },
-    {
-      name: 'Azure & GCP Services',
-      tags: ['Functions', '.NET', 'Cloud Run', 'Cloud Functions', 'Firebase'],
-    },
-    {
-      name: 'Career & Learning',
-      tags: ['Certification', 'Career Development', 'Leadership', 'Learning'],
-    },
-    {
-      name: 'Cloud Providers',
-      tags: ['AWS', 'Azure', 'GCP'],
-    },
-    {
-      name: 'Concepts & Practices',
-      tags: [
-        'Serverless',
-        'AI',
-        'Machine Learning',
-        'Multi-Cloud',
-        'FinOps',
-        'Cost Optimization',
-        'ETL',
-        'Data Engineering',
-        'Cloud Strategy',
-      ],
-    },
-    {
-      name: 'Frameworks & Tools',
-      tags: ['Vue', 'Next.js', 'Blazor', 'Vite', 'Tailwind'],
-    },
-    {
-      name: 'Infrastructure & DevOps',
-      tags: [
-        'Terraform',
-        'IaC',
-        'CI/CD',
-        'DevOps',
-        'Docker',
-        'Containers',
-        'GitHub Actions',
-        'SAM',
-      ],
-    },
-    {
-      name: 'Platforms',
-      tags: ['Vercel', 'Bref', 'Claude', 'Pluralsight'],
-    },
-    {
-      name: 'Programming Languages',
-      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP', 'Java'],
-    },
-    {
-      name: 'Technical Topics',
-      tags: [
-        'Performance',
-        'Networking',
-        'Storage',
-        'CDN',
-        'DNS',
-        'Engineering',
-        'Hiring',
-        'Getting Started',
-        'Tech Industry',
-        'Cloud',
-      ],
-    },
-  ];
+  const categories = blogConfig.value?.tags?.categories || [];
 
   // Filter each category to only include tags that are actually available and have count > 0
+  // Convert tags to broad or specific based on toggle
   // Sort categories alphabetically by name, and tags within each category alphabetically
   return categories
-    .map(category => ({
-      name: category.name,
-      tags: category.tags
-        .filter(
-          tag =>
-            props.availableTags.includes(tag) && (tagCounts.value[tag] || 0) > 0
-        )
-        .sort((a, b) => a.localeCompare(b)),
-    }))
+    .map(category => {
+      // Convert all tags to broad or specific based on toggle state
+      const convertedTags = category.tags
+        .map(tag => convertTag(tag))
+        .filter(tag => {
+          // For specific mode: check if original tag exists and has count > 0
+          // For broad mode: check if any of the mapped specific tags exist
+          if (useSpecificTags.value) {
+            return (
+              props.availableTags.includes(tag) &&
+              (tagCounts.value[tag] || 0) > 0
+            );
+          } else {
+            const mapping = tagMapping || {};
+            const specificTags = Object.entries(mapping)
+              .filter(([_, broad]) => broad === tag)
+              .map(([specific, _]) => specific);
+            if (specificTags.length === 0) {
+              return (
+                props.availableTags.includes(tag) &&
+                (tagCounts.value[tag] || 0) > 0
+              );
+            }
+            return specificTags.some(
+              specificTag =>
+                props.availableTags.includes(specificTag) &&
+                (tagCounts.value[specificTag] || 0) > 0
+            );
+          }
+        });
+
+      // Remove duplicates (in broad mode, multiple specific tags map to same broad)
+      const uniqueTags = Array.from(new Set(convertedTags));
+
+      return {
+        name: category.name,
+        tags: uniqueTags.sort((a, b) => a.localeCompare(b)),
+      };
+    })
     .filter(category => category.tags.length > 0)
     .sort((a, b) => a.name.localeCompare(b.name));
 });

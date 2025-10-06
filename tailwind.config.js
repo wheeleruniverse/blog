@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./public/blog-config.json",
   ],
   darkMode: 'class',
   theme: {
