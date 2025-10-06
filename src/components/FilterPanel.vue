@@ -143,75 +143,6 @@
           </div>
         </div>
 
-        <!-- Source Filter -->
-        <div v-if="availableSources.length > 0">
-          <label
-            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
-          >
-            Source
-          </label>
-          <div class="space-y-2">
-            <label
-              v-for="source in availableSources"
-              :key="source"
-              class="flex items-center"
-            >
-              <input
-                v-model="localFilters.sources"
-                :value="source"
-                type="checkbox"
-                class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
-              />
-              <span
-                class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
-              >
-                {{ source }}
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Tags Filter (Grouped) -->
-        <div v-if="availableTags.length > 0">
-          <label
-            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-3"
-          >
-            Tags
-          </label>
-          <div class="space-y-4">
-            <div
-              v-for="category in tagCategories"
-              :key="category.name"
-              v-show="category.tags.length > 0"
-            >
-              <h4
-                class="text-xs font-semibold text-wheeler-gray-600 dark:text-wheeler-gray-400 mb-2 uppercase tracking-wide"
-              >
-                {{ category.name }}
-              </h4>
-              <div class="space-y-2 pl-1">
-                <label
-                  v-for="tag in category.tags"
-                  :key="tag"
-                  class="flex items-center"
-                >
-                  <input
-                    v-model="localFilters.tags"
-                    :value="tag"
-                    type="checkbox"
-                    class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
-                  />
-                  <span
-                    class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
-                  >
-                    {{ tag }}
-                  </span>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Collaboration Filter -->
         <div>
           <label class="flex items-center">
@@ -258,6 +189,98 @@
               Show public GitHub repositories only
             </span>
           </label>
+        </div>
+
+        <!-- Source Filter -->
+        <div v-if="availableSources.length > 0">
+          <label
+            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
+          >
+            Source
+          </label>
+          <div class="space-y-2">
+            <label
+              v-for="source in availableSources"
+              :key="source"
+              class="flex items-center"
+            >
+              <input
+                v-model="localFilters.sources"
+                :value="source"
+                type="checkbox"
+                class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+              />
+              <span
+                class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+              >
+                {{ source }}
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Tags Filter (Grouped & Collapsible) -->
+        <div v-if="availableTags.length > 0">
+          <label
+            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-3"
+          >
+            Tags
+          </label>
+          <div class="space-y-3">
+            <div
+              v-for="category in tagCategories"
+              :key="category.name"
+              v-show="category.tags.length > 0"
+              class="border border-wheeler-gray-200 dark:border-wheeler-gray-700 rounded-md overflow-hidden"
+            >
+              <button
+                @click="toggleCategoryCollapsed(category.name)"
+                class="w-full flex items-center justify-between px-3 py-2 bg-wheeler-gray-50 dark:bg-wheeler-gray-750 hover:bg-wheeler-gray-100 dark:hover:bg-wheeler-gray-700 transition-colors duration-200"
+              >
+                <h4
+                  class="text-xs font-semibold text-wheeler-gray-600 dark:text-wheeler-gray-400 uppercase tracking-wide"
+                >
+                  {{ category.name }}
+                </h4>
+                <ChevronDownIcon
+                  v-if="collapsedCategories.has(category.name)"
+                  class="w-4 h-4 text-wheeler-gray-500 dark:text-wheeler-gray-400"
+                />
+                <ChevronUpIcon
+                  v-else
+                  class="w-4 h-4 text-wheeler-gray-500 dark:text-wheeler-gray-400"
+                />
+              </button>
+              <div
+                class="overflow-hidden transition-all duration-300 ease-in-out"
+                :class="
+                  collapsedCategories.has(category.name)
+                    ? 'max-h-0'
+                    : 'max-h-[500px]'
+                "
+              >
+                <div class="space-y-2 p-3">
+                  <label
+                    v-for="tag in category.tags"
+                    :key="tag"
+                    class="flex items-center"
+                  >
+                    <input
+                      v-model="localFilters.tags"
+                      :value="tag"
+                      type="checkbox"
+                      class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+                    />
+                    <span
+                      class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+                    >
+                      {{ tag }}
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Active Filters Display -->
@@ -378,6 +401,7 @@ const emit = defineEmits<Emits>();
 
 // Collapsible state
 const isCollapsed = ref(false);
+const collapsedCategories = ref(new Set<string>());
 
 // Set initial collapsed state based on screen size
 const setInitialCollapsedState = () => {
@@ -388,6 +412,16 @@ const setInitialCollapsedState = () => {
 const toggleCollapsed = () => {
   isCollapsed.value = !isCollapsed.value;
   emit('update:collapsed', isCollapsed.value);
+};
+
+const toggleCategoryCollapsed = (categoryName: string) => {
+  if (collapsedCategories.value.has(categoryName)) {
+    collapsedCategories.value.delete(categoryName);
+  } else {
+    collapsedCategories.value.add(categoryName);
+  }
+  // Force reactivity by creating a new Set
+  collapsedCategories.value = new Set(collapsedCategories.value);
 };
 
 onMounted(() => {
@@ -430,25 +464,9 @@ const datePresets = computed(() => {
   return [...staticPresets, ...yearPresets];
 });
 
-// Categorize tags for better UX
+// Categorize tags for better UX (alphabetized)
 const tagCategories = computed(() => {
   const categories = [
-    {
-      name: 'Cloud Providers',
-      tags: ['AWS', 'Azure', 'GCP'],
-    },
-    {
-      name: 'Programming Languages',
-      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP'],
-    },
-    {
-      name: 'Frameworks & Tools',
-      tags: ['Vue', 'Next.js', 'Blazor', 'Vite', 'Tailwind'],
-    },
-    {
-      name: 'Infrastructure & DevOps',
-      tags: ['Terraform', 'IaC', 'CI/CD', 'DevOps', 'Docker', 'Containers'],
-    },
     {
       name: 'AWS Services',
       tags: [
@@ -468,6 +486,14 @@ const tagCategories = computed(() => {
       tags: ['Functions', '.NET', 'Cloud Run', 'Cloud Functions', 'Firebase'],
     },
     {
+      name: 'Career & Learning',
+      tags: ['Certification', 'Career Development', 'Leadership', 'Learning'],
+    },
+    {
+      name: 'Cloud Providers',
+      tags: ['AWS', 'Azure', 'GCP'],
+    },
+    {
       name: 'Concepts & Practices',
       tags: [
         'Serverless',
@@ -482,8 +508,20 @@ const tagCategories = computed(() => {
       ],
     },
     {
-      name: 'Career & Learning',
-      tags: ['Certification', 'Career Development', 'Leadership', 'Learning'],
+      name: 'Frameworks & Tools',
+      tags: ['Vue', 'Next.js', 'Blazor', 'Vite', 'Tailwind'],
+    },
+    {
+      name: 'Infrastructure & DevOps',
+      tags: ['Terraform', 'IaC', 'CI/CD', 'DevOps', 'Docker', 'Containers'],
+    },
+    {
+      name: 'Platforms',
+      tags: ['Vercel', 'Bref', 'Claude', 'Pluralsight'],
+    },
+    {
+      name: 'Programming Languages',
+      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP'],
     },
     {
       name: 'Technical Topics',
@@ -500,19 +538,16 @@ const tagCategories = computed(() => {
         'Cloud',
       ],
     },
-    {
-      name: 'Platforms',
-      tags: ['Vercel', 'Bref', 'Claude', 'Pluralsight'],
-    },
   ];
 
-  // Filter each category to only include tags that are actually available
+  // Filter each category to only include tags that are actually available, then sort alphabetically by category name
   return categories
     .map(category => ({
       name: category.name,
       tags: category.tags.filter(tag => props.availableTags.includes(tag)),
     }))
-    .filter(category => category.tags.length > 0);
+    .filter(category => category.tags.length > 0)
+    .sort((a, b) => a.name.localeCompare(b.name));
 });
 
 const setDatePreset = (preset: string) => {

@@ -83,25 +83,6 @@
         "
         class="flex items-center gap-2 pt-2 border-t border-wheeler-gray-100 dark:border-wheeler-gray-700 flex-wrap"
       >
-        <!-- Tags (limited to 5) -->
-        <span
-          v-for="tag in displayedTags"
-          :key="tag"
-          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium shrink-0"
-          :class="getTagColorClass(tag)"
-        >
-          {{ tag }}
-        </span>
-
-        <!-- Separator between tags and other badges -->
-        <span
-          v-if="displayedTags.length > 0 && (entry.collab || entry.video)"
-          class="text-wheeler-gray-400 dark:text-wheeler-gray-500 text-sm shrink-0"
-          aria-hidden="true"
-        >
-          |
-        </span>
-
         <!-- Collaboration badge -->
         <span
           v-if="entry.collab"
@@ -119,13 +100,32 @@
           <PlayIcon class="w-3 h-3 mr-1" />
           Video
         </span>
+
+        <!-- Separator between special badges and tags -->
+        <span
+          v-if="(entry.collab || entry.video) && displayedTags.length > 0"
+          class="text-wheeler-gray-400 dark:text-wheeler-gray-500 text-sm shrink-0"
+          aria-hidden="true"
+        >
+          |
+        </span>
+
+        <!-- Tags (responsive limit: 3 on mobile, 5 on desktop) -->
+        <span
+          v-for="tag in displayedTags"
+          :key="tag"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium shrink-0"
+          :class="getTagColorClass(tag)"
+        >
+          {{ tag }}
+        </span>
       </div>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import type { BlogEntry } from '@/types';
 import {
   CalendarIcon,
@@ -147,10 +147,34 @@ const props = defineProps<Props>();
 const getSourceDomain = getDomainFromUrl;
 const showCopiedFeedback = ref(false);
 
-// Limit tags to 5 for display
+// Track window width for responsive tag display
+const windowWidth = ref(
+  typeof window !== 'undefined' ? window.innerWidth : 1024
+);
+
+const updateWindowWidth = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    windowWidth.value = window.innerWidth;
+    window.addEventListener('resize', updateWindowWidth);
+  }
+});
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateWindowWidth);
+  }
+});
+
+// Responsive tag limit: 3 on mobile (<640px), 5 on desktop
 const displayedTags = computed(() => {
   if (!props.entry.tags) return [];
-  return props.entry.tags.slice(0, 5);
+  const isMobile = windowWidth.value < 640;
+  const limit = isMobile ? 3 : 5;
+  return props.entry.tags.slice(0, limit);
 });
 
 const copyButtonTitle = computed(() =>
