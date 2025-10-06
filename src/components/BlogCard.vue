@@ -83,6 +83,26 @@
         "
         class="flex items-center gap-2 pt-2 border-t border-wheeler-gray-100 dark:border-wheeler-gray-700 flex-wrap"
       >
+        <!-- Tags (limited to 5) -->
+        <span
+          v-for="tag in displayedTags"
+          :key="tag"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium shrink-0"
+          :class="getTagColorClass(tag)"
+        >
+          {{ tag }}
+        </span>
+
+        <!-- Separator between tags and other badges -->
+        <span
+          v-if="displayedTags.length > 0 && (entry.collab || entry.video)"
+          class="text-wheeler-gray-400 dark:text-wheeler-gray-500 text-sm shrink-0"
+          aria-hidden="true"
+        >
+          |
+        </span>
+
+        <!-- Collaboration badge -->
         <span
           v-if="entry.collab"
           class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-coral-100 text-wheeler-coral-800 dark:bg-wheeler-coral-900 dark:text-wheeler-coral-200 shrink-0"
@@ -90,20 +110,14 @@
           <UsersIcon class="w-3 h-3 mr-1" />
           Collaboration
         </span>
+
+        <!-- Video badge -->
         <span
           v-if="entry.video"
           class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-wheeler-pink-100 text-wheeler-pink-800 dark:bg-wheeler-pink-900 dark:text-wheeler-pink-200 shrink-0"
         >
           <PlayIcon class="w-3 h-3 mr-1" />
           Video
-        </span>
-        <span
-          v-for="tag in entry.tags"
-          :key="tag"
-          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium shrink-0"
-          :class="getTagColorClass(tag)"
-        >
-          {{ tag }}
         </span>
       </div>
     </div>
@@ -132,6 +146,12 @@ const props = defineProps<Props>();
 
 const getSourceDomain = getDomainFromUrl;
 const showCopiedFeedback = ref(false);
+
+// Limit tags to 5 for display
+const displayedTags = computed(() => {
+  if (!props.entry.tags) return [];
+  return props.entry.tags.slice(0, 5);
+});
 
 const copyButtonTitle = computed(() =>
   showCopiedFeedback.value ? 'Copied!' : 'Copy local link'
