@@ -168,9 +168,12 @@ const copyLocalUrl = async (): Promise<void> => {
 // Map tags to color classes for accessibility and visual consistency
 const getTagColorClass = (tag: string): string => {
   const tagColorMap: Record<string, string> = {
+    // Cloud Providers
     'AWS': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
     'Azure': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
     'GCP': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+
+    // Programming Languages
     'TypeScript':
       'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
     'JavaScript':
@@ -180,14 +183,107 @@ const getTagColorClass = (tag: string): string => {
     'C#': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
     'PHP':
       'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+
+    // Frameworks & Tools
+    'Vue':
+      'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
+    'Next.js':
+      'bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200',
+    'Blazor':
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'Vite':
+      'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+    'Tailwind': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200',
+
+    // Infrastructure & DevOps
+    'Terraform':
+      'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+    'IaC': 'bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200',
+    'CI/CD': 'bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200',
+    'DevOps': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
+    'Docker': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    'Containers': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
+
+    // AWS Services
+    'Lambda':
+      'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    'S3': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'CloudFront':
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'Route53': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    'ECR':
+      'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+    'CloudWatch':
+      'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    'X-Ray':
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'SageMaker':
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'Lightsail':
+      'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
+
+    // Azure Services
+    'Functions':
+      'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    '.NET':
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+
+    // GCP Services
+    'Cloud Run':
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'Cloud Functions':
+      'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
+    'Firebase':
+      'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
+
+    // Concepts & Practices
     'Serverless':
       'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
     'AI': 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-200',
-    'Vue':
+    'Machine Learning':
+      'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
+    'Multi-Cloud':
+      'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200',
+    'FinOps':
       'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
-    'Terraform':
-      'bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200',
+    'Cost Optimization':
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'ETL':
+      'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+    'Data Engineering':
+      'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+
+    // Career & Learning
+    'Certification':
+      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    'Career Development':
+      'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200',
+    'Leadership':
+      'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200',
+    'Learning': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
+
+    // Platforms & Services
     'Vercel': 'bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200',
+    'Bref':
+      'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+    'Claude':
+      'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
+    'Pluralsight':
+      'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
+
+    // Technical Categories
+    'Performance':
+      'bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200',
+    'Networking':
+      'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200',
+    'Storage':
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'CDN':
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'DNS': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    'Engineering':
+      'bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200',
+    'Hiring': 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200',
   };
 
   return (
