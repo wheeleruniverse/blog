@@ -171,31 +171,44 @@
           </div>
         </div>
 
-        <!-- Tags Filter -->
+        <!-- Tags Filter (Grouped) -->
         <div v-if="availableTags.length > 0">
           <label
-            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-2"
+            class="block text-sm font-medium text-wheeler-gray-700 dark:text-wheeler-gray-300 mb-3"
           >
             Tags
           </label>
-          <div class="space-y-2">
-            <label
-              v-for="tag in availableTags"
-              :key="tag"
-              class="flex items-center"
+          <div class="space-y-4">
+            <div
+              v-for="category in tagCategories"
+              :key="category.name"
+              v-show="category.tags.length > 0"
             >
-              <input
-                v-model="localFilters.tags"
-                :value="tag"
-                type="checkbox"
-                class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
-              />
-              <span
-                class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+              <h4
+                class="text-xs font-semibold text-wheeler-gray-600 dark:text-wheeler-gray-400 mb-2 uppercase tracking-wide"
               >
-                {{ tag }}
-              </span>
-            </label>
+                {{ category.name }}
+              </h4>
+              <div class="space-y-2 pl-1">
+                <label
+                  v-for="tag in category.tags"
+                  :key="tag"
+                  class="flex items-center"
+                >
+                  <input
+                    v-model="localFilters.tags"
+                    :value="tag"
+                    type="checkbox"
+                    class="h-4 w-4 text-wheeler-purple-600 focus:ring-wheeler-purple-500 border-wheeler-gray-300 dark:border-wheeler-gray-600 rounded"
+                  />
+                  <span
+                    class="ml-2 text-sm text-wheeler-gray-700 dark:text-wheeler-gray-300"
+                  >
+                    {{ tag }}
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -415,6 +428,91 @@ const datePresets = computed(() => {
   }));
 
   return [...staticPresets, ...yearPresets];
+});
+
+// Categorize tags for better UX
+const tagCategories = computed(() => {
+  const categories = [
+    {
+      name: 'Cloud Providers',
+      tags: ['AWS', 'Azure', 'GCP'],
+    },
+    {
+      name: 'Programming Languages',
+      tags: ['TypeScript', 'JavaScript', 'Python', 'Ruby', 'C#', 'PHP'],
+    },
+    {
+      name: 'Frameworks & Tools',
+      tags: ['Vue', 'Next.js', 'Blazor', 'Vite', 'Tailwind'],
+    },
+    {
+      name: 'Infrastructure & DevOps',
+      tags: ['Terraform', 'IaC', 'CI/CD', 'DevOps', 'Docker', 'Containers'],
+    },
+    {
+      name: 'AWS Services',
+      tags: [
+        'Lambda',
+        'S3',
+        'CloudFront',
+        'Route53',
+        'ECR',
+        'CloudWatch',
+        'X-Ray',
+        'SageMaker',
+        'Lightsail',
+      ],
+    },
+    {
+      name: 'Azure & GCP Services',
+      tags: ['Functions', '.NET', 'Cloud Run', 'Cloud Functions', 'Firebase'],
+    },
+    {
+      name: 'Concepts & Practices',
+      tags: [
+        'Serverless',
+        'AI',
+        'Machine Learning',
+        'Multi-Cloud',
+        'FinOps',
+        'Cost Optimization',
+        'ETL',
+        'Data Engineering',
+        'Cloud Strategy',
+      ],
+    },
+    {
+      name: 'Career & Learning',
+      tags: ['Certification', 'Career Development', 'Leadership', 'Learning'],
+    },
+    {
+      name: 'Technical Topics',
+      tags: [
+        'Performance',
+        'Networking',
+        'Storage',
+        'CDN',
+        'DNS',
+        'Engineering',
+        'Hiring',
+        'Getting Started',
+        'Tech Industry',
+        'Cloud',
+      ],
+    },
+    {
+      name: 'Platforms',
+      tags: ['Vercel', 'Bref', 'Claude', 'Pluralsight'],
+    },
+  ];
+
+  // Filter each category to only include tags that are actually available
+  return categories
+    .map(category => ({
+      name: category.name,
+      tags: category.tags.filter(tag => props.availableTags.includes(tag)),
+    }))
+    .filter(category => category.tags.length > 0);
 });
 
 const setDatePreset = (preset: string) => {
