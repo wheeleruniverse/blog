@@ -78,8 +78,10 @@
 
       <!-- Badges Section -->
       <div
-        v-if="entry.collab || entry.video"
-        class="flex items-center gap-2 pt-2 border-t border-wheeler-gray-100 dark:border-wheeler-gray-700"
+        v-if="
+          entry.collab || entry.video || (entry.tags && entry.tags.length > 0)
+        "
+        class="flex items-center gap-2 pt-2 border-t border-wheeler-gray-100 dark:border-wheeler-gray-700 flex-wrap"
       >
         <span
           v-if="entry.collab"
@@ -94,6 +96,14 @@
         >
           <PlayIcon class="w-3 h-3 mr-1" />
           Video
+        </span>
+        <span
+          v-for="tag in entry.tags"
+          :key="tag"
+          class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium shrink-0"
+          :class="getTagColorClass(tag)"
+        >
+          {{ tag }}
         </span>
       </div>
     </div>
@@ -153,5 +163,36 @@ const copyLocalUrl = async (): Promise<void> => {
       showCopiedFeedback.value = false;
     }, 2000);
   }
+};
+
+// Map tags to color classes for accessibility and visual consistency
+const getTagColorClass = (tag: string): string => {
+  const tagColorMap: Record<string, string> = {
+    'AWS': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
+    'Azure': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    'GCP': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    'TypeScript':
+      'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
+    'JavaScript':
+      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    'Python': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
+    'Ruby': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+    'C#': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    'PHP':
+      'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+    'Serverless':
+      'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
+    'AI': 'bg-fuchsia-100 text-fuchsia-800 dark:bg-fuchsia-900 dark:text-fuchsia-200',
+    'Vue':
+      'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
+    'Terraform':
+      'bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200',
+    'Vercel': 'bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200',
+  };
+
+  return (
+    tagColorMap[tag] ||
+    'bg-wheeler-gray-100 text-wheeler-gray-800 dark:bg-wheeler-gray-700 dark:text-wheeler-gray-200'
+  );
 };
 </script>

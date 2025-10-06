@@ -32,6 +32,7 @@ describe('BlogList', () => {
     dateTo: '',
     datePreset: '',
     sources: [],
+    tags: [],
     showCollabOnly: false,
     showVideoOnly: false,
     showGithubOnly: false,

@@ -18,6 +18,7 @@ export function useBlogData() {
     dateTo: '',
     datePreset: '',
     sources: [],
+    tags: [],
     showCollabOnly: false,
     showVideoOnly: false,
     showGithubOnly: false,
@@ -98,6 +99,16 @@ export function useBlogData() {
       entries = entries.filter(entry => !!entry.github);
     }
 
+    // Tags filter (OR logic - entry matches if it has ANY of the selected tags)
+    if (filters.value.tags.length > 0) {
+      entries = entries.filter(entry => {
+        if (!entry.tags || entry.tags.length === 0) return false;
+        return filters.value.tags.some(selectedTag =>
+          entry.tags!.includes(selectedTag)
+        );
+      });
+    }
+
     return entries;
   });
 
@@ -121,6 +132,19 @@ export function useBlogData() {
     return Array.from(sources).sort();
   });
 
+  const availableTags = computed((): string[] => {
+    if (!blogConfig.value?.data) return [];
+
+    const tags = new Set<string>();
+    blogConfig.value.data.forEach(entry => {
+      if (entry.tags) {
+        entry.tags.forEach(tag => tags.add(tag));
+      }
+    });
+
+    return Array.from(tags).sort();
+  });
+
   const isFeatureEnabled = (featureName: string): boolean => {
     if (!blogConfig.value?.features) return false;
 
@@ -141,6 +165,7 @@ export function useBlogData() {
     sortedBlogEntries,
     filteredBlogEntries,
     availableSources,
+    availableTags,
     isFeatureEnabled,
     findBlogBySlug,
   };
