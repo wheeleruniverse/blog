@@ -17,6 +17,7 @@ export interface BlogEntry {
   sourceDisplayName?: string; // Display name for source (e.g., "YouTube", "Personal Blog")
   video?: boolean; // written content: false/undefined, video: true
   github?: string; // GitHub repository URL
+  tags?: string[]; // Tags for the blog post (e.g., "TypeScript", "AWS", "Azure")
 }
 
 export interface FilterOptions {
@@ -25,6 +26,7 @@ export interface FilterOptions {
   dateTo: string;
   datePreset: string; // For 1-click date filters like "1month", "3months", "2024", etc.
   sources: string[];
+  tags: string[];
   showCollabOnly: boolean;
   showVideoOnly: boolean;
   showGithubOnly: boolean;

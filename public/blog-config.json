@@ -19,7 +19,8 @@
       "name": "Building Resume Bravo-tizer: How AWS Serverless and Claude AI Transformed Our Resume Processing Workflow",
       "slug": "building-resume-bravo-tizer",
       "source": "https://bravolt.com/post/building-resume-bravo-tizer-how-aws-serverless-and-claude-ai-transformed-our-resume-processing-work",
-      "sourceDisplayName": "Bravo LT"
+      "sourceDisplayName": "Bravo LT",
+      "tags": ["AWS", "Serverless", "AI"]
     },
     {
       "date": "2025-07-23",
@@ -27,7 +28,8 @@
       "slug": "multi-cloud-serverless-showcase",
       "source": "https://dev.to/wheeleruniverse/conquering-the-multi-cloud-resume-challenge-my-journey-to-a-serverless-showcase-5a6c",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/multicloud-resume"
+      "github": "https://github.com/wheeleruniverse/multicloud-resume",
+      "tags": ["AWS", "Azure", "GCP", "Serverless", "TypeScript", "Terraform"]
     },
     {
       "date": "2025-07-08",
@@ -35,7 +37,8 @@
       "slug": "claude-code-blog-aggregator",
       "source": "https://dev.to/wheeleruniverse/from-dusty-requirements-to-live-website-how-claude-code-built-my-blog-aggregator-in-a-single-day-3jbo",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/blog"
+      "github": "https://github.com/wheeleruniverse/blog",
+      "tags": ["TypeScript", "Vue", "AI"]
     },
     {
       "collab": true,
@@ -44,14 +47,16 @@
       "slug": "wmaug-optimizing-your-aws-bill",
       "source": "https://youtu.be/9ypRAMn1dOM?si=xGz4bzucks7J075p",
       "sourceDisplayName": "YouTube",
-      "video": true
+      "video": true,
+      "tags": ["AWS"]
     },
     {
       "date": "2024-05-09",
       "name": "How I Crushed My AWS Certification Renewals Back-to-Back (and Why It Was a Bad Idea)",
       "slug": "aws-cert-renewals-back-to-back",
       "source": "https://dev.to/aws-builders/how-i-crushed-my-aws-certification-renewals-back-to-back-and-why-it-was-a-bad-idea-56fh",
-      "sourceDisplayName": "Dev.to (AWS Community Builders)"
+      "sourceDisplayName": "Dev.to (AWS Community Builders)",
+      "tags": ["AWS"]
     },
     {
       "date": "2024-03-21",
@@ -72,23 +77,26 @@
       "date": "2024-02-12",
       "name": "Getting Hands-on with Blazor, Next.js and Vercel",
       "slug": "hands-on-blazor-nextjs-vercel",
-      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-and-vercel-gg0",
+      "source": "https://dev.to/wheeleruniverse/getting-hands-on-with-blazor-nextjs-vercel-gg0",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-resume-from-json"
+      "github": "https://github.com/wheeleruniverse/cgc-resume-from-json",
+      "tags": ["C#", "TypeScript", "Vercel"]
     },
     {
       "date": "2024-02-06",
       "name": "New Year, New Cost Savings Opportunities in Cloud Services",
       "slug": "new-year-new-cloud-cost-savings-opportunities",
       "source": "https://bravolt.com/post/new-cost-saving-in-cloud-services",
-      "sourceDisplayName": "Bravo LT"
+      "sourceDisplayName": "Bravo LT",
+      "tags": ["AWS"]
     },
     {
       "date": "2024-01-30",
       "name": "Navigating AWS Certifications in 2024",
       "slug": "navigating-aws-certifications-2024",
       "source": "https://dev.to/aws-builders/navigating-aws-certifications-in-2024-hap",
-      "sourceDisplayName": "Dev.to (AWS Community Builders)"
+      "sourceDisplayName": "Dev.to (AWS Community Builders)",
+      "tags": ["AWS"]
     },
     {
       "date": "2024-01-08",
@@ -111,21 +119,24 @@
       "name": "Optimizing AWS Cloud Costs: A Two-Phase Approach for Efficiency and Savings",
       "slug": "optimizing-aws-cloud-costs",
       "source": "https://bravolt.com/post/optimizing-aws-cloud-costs-a-two-phase-approach-for-efficiency-and-savings",
-      "sourceDisplayName": "Bravo LT"
+      "sourceDisplayName": "Bravo LT",
+      "tags": ["AWS"]
     },
     {
       "date": "2023-03-08",
       "name": "Defining AWS Cost Optimization",
       "slug": "defining-aws-cost-optimization",
       "source": "https://bravolt.com/post/defining-aws-cost-optimization",
-      "sourceDisplayName": "Bravo LT"
+      "sourceDisplayName": "Bravo LT",
+      "tags": ["AWS"]
     },
     {
       "date": "2022-07-26",
       "name": "Deploying a Mostly Serverless Website on GCP",
       "slug": "serverless-website-gcp",
       "source": "https://dev.to/wheeleruniverse/deploying-a-mostly-serverless-website-on-gcp-134d",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["GCP", "Serverless"]
     },
     {
       "collab": true,
@@ -133,14 +144,16 @@
       "name": "Lightsail: AWS Easy Mode",
       "slug": "lightsail-aws-easy-mode",
       "source": "https://dev.to/wheeleruniverse/lightsail-aws-easy-mode-13ae",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2022-03-17",
       "name": "Fully AWS Certified - The 5 Most Common Questions I Received",
       "slug": "fully-aws-certified-common-questions",
       "source": "https://dev.to/wheeleruniverse/fully-aws-certified-the-5-most-common-questions-i-received-1pk8",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-11-19",
@@ -148,7 +161,8 @@
       "slug": "serverless-aws-bref-php",
       "source": "https://dev.to/aws-builders/creating-serverless-websites-with-aws-bref-and-php-203j",
       "sourceDisplayName": "Dev.to (AWS Community Builders)",
-      "github": "https://github.com/wheeleruniverse/wheelerrecommends"
+      "github": "https://github.com/wheeleruniverse/wheelerrecommends",
+      "tags": ["AWS", "Serverless", "PHP"]
     },
     {
       "date": "2021-10-01",
@@ -163,7 +177,8 @@
       "slug": "gcp-resume",
       "source": "https://dev.to/wheeleruniverse/aug-21-cloudguruchallenge-4kaj",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-gcp-resume"
+      "github": "https://github.com/wheeleruniverse/cgc-gcp-resume",
+      "tags": ["GCP", "Terraform"]
     },
     {
       "collab": true,
@@ -179,7 +194,8 @@
       "slug": "aws-app-performance",
       "source": "https://dev.to/wheeleruniverse/jun-21-cloudguruchallenge-2k11",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-aws-app-performance"
+      "github": "https://github.com/wheeleruniverse/cgc-aws-app-performance",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-05-28",
@@ -187,7 +203,8 @@
       "slug": "azure-resume",
       "source": "https://dev.to/wheeleruniverse/apr-21-cloudguruchallenge-3fch",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-azure-resume"
+      "github": "https://github.com/wheeleruniverse/cgc-azure-resume",
+      "tags": ["Azure", "C#"]
     },
     {
       "date": "2021-04-15",
@@ -195,42 +212,48 @@
       "slug": "azure-ruby-on-rails-with-cicd",
       "source": "https://dev.to/wheeleruniverse/feb-21-cloudguruchallenge-358d",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-azure-cicd"
+      "github": "https://github.com/wheeleruniverse/cgc-azure-cicd",
+      "tags": ["Azure", "Ruby"]
     },
     {
       "date": "2021-02-04",
       "name": "AWS ECR in 3 Minutes",
       "slug": "aws-ecr-3-minutes",
       "source": "https://dev.to/wheeleruniverse/aws-ecr-in-3-minutes-3e1p",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-02-03",
       "name": "AWS CloudFront in 3 Minutes",
       "slug": "aws-cloudfront-3-minutes",
       "source": "https://dev.to/wheeleruniverse/aws-cloudfront-in-3-minutes-5ap5",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-02-02",
       "name": "AWS Route 53 in 3 Minutes",
       "slug": "aws-route53-3-minutes",
       "source": "https://dev.to/wheeleruniverse/aws-route-53-in-3-minutes-2fal",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-01-26",
       "name": "AWS Lambda in 3 Minutes",
       "slug": "aws-lambda-3-minutes",
       "source": "https://dev.to/wheeleruniverse/aws-lambda-in-3-minutes-2eff",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS", "Serverless"]
     },
     {
       "date": "2021-01-25",
       "name": "AWS S3 in 3 Minutes",
       "slug": "aws-s3-3-minutes",
       "source": "https://dev.to/wheeleruniverse/aws-s3-in-3-minutes-42dc",
-      "sourceDisplayName": "Dev.to (Personal)"
+      "sourceDisplayName": "Dev.to (Personal)",
+      "tags": ["AWS"]
     },
     {
       "date": "2021-01-24",
@@ -238,7 +261,8 @@
       "slug": "multi-cloud-madness",
       "source": "https://dev.to/wheeleruniverse/january-21-cloudguruchallenge-iaj",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-multicloud-madness"
+      "github": "https://github.com/wheeleruniverse/cgc-multicloud-madness",
+      "tags": ["AWS", "Azure", "GCP"]
     },
     {
       "date": "2020-12-18",
@@ -246,7 +270,8 @@
       "slug": "aws-ml-recommendation-engine",
       "source": "https://dev.to/wheeleruniverse/my-october-cloud-guru-challenge-experience-5ecg",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-aws-ml-recommendation-engine"
+      "github": "https://github.com/wheeleruniverse/cgc-aws-ml-recommendation-engine",
+      "tags": ["AWS", "AI"]
     },
     {
       "date": "2020-09-21",
@@ -254,7 +279,8 @@
       "slug": "aws-covid-etl",
       "source": "https://dev.to/wheeleruniverse/my-september-cloud-guru-challenge-experience-l2j",
       "sourceDisplayName": "Dev.to (Personal)",
-      "github": "https://github.com/wheeleruniverse/cgc-aws-covid-etl"
+      "github": "https://github.com/wheeleruniverse/cgc-aws-covid-etl",
+      "tags": ["AWS", "Python"]
     }
   ]
 }

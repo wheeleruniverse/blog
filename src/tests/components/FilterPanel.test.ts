@@ -50,6 +50,7 @@ describe('FilterPanel', () => {
     dateTo: '',
     datePreset: '',
     sources: [],
+    tags: [],
     showCollabOnly: false,
     showVideoOnly: false,
     showGithubOnly: false,
@@ -58,6 +59,7 @@ describe('FilterPanel', () => {
   const defaultProps = {
     filters: defaultFilters,
     availableSources: ['Example', 'Another Site'],
+    availableTags: [],
     allEntries: mockBlogEntries,
   };
 
@@ -194,6 +196,7 @@ describe('FilterPanel', () => {
       dateTo: '',
       datePreset: '',
       sources: [],
+      tags: [],
       showCollabOnly: false,
       showVideoOnly: false,
       showGithubOnly: false,

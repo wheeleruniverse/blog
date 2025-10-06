@@ -46,6 +46,7 @@
             <FilterPanel
               :filters="filters"
               :available-sources="availableSources"
+              :available-tags="availableTags"
               :all-entries="sortedBlogEntries"
               @update:filters="updateFilters"
               @update:collapsed="updateCollapsedState"
@@ -130,6 +131,7 @@ const {
   sortedBlogEntries,
   filteredBlogEntries,
   availableSources,
+  availableTags,
 } = useBlogData();
 
 const { createDefaultMetaTags } = useMetaTags();
@@ -178,6 +180,7 @@ const clearAllFilters = () => {
     dateTo: '',
     datePreset: '',
     sources: [],
+    tags: [],
     showCollabOnly: false,
     showVideoOnly: false,
     showGithubOnly: false,
