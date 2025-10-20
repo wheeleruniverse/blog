@@ -15,6 +15,15 @@
   ],
   "data": [
     {
+      "date": "2025-10-20",
+      "name": "Better Late Than Never: Tackling the 2022 Cloud Portfolio Challenge in 2025",
+      "slug": "cgc-lb-and-cdn",
+      "source": "https://dev.to/wheeleruniverse/better-late-than-never-tackling-the-2022-cloud-portfolio-challenge-in-2025-with-a-modern-twist-3gde",
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-lb-and-cdn",
+      "tags": ["DigitalOcean", "Pulumi", "Golang", "Next.js", "AI", "CDN", "Load Balancing", "GitHub Actions"]
+    },
+    {
       "date": "2025-07-29",
       "name": "Building Resume Bravo-tizer: How AWS Serverless and Claude AI Transformed Our Resume Processing Workflow",
       "slug": "building-resume-bravo-tizer",
@@ -305,7 +314,7 @@
       },
       {
         "name": "Cloud Providers",
-        "tags": ["AWS", "Azure", "GCP"]
+        "tags": ["AWS", "Azure", "GCP", "DigitalOcean"]
       },
       {
         "name": "Concepts & Practices",
@@ -325,15 +334,15 @@
       },
       {
         "name": "Platforms",
-        "tags": ["Vercel", "Bref", "Claude", "Pluralsight"]
+        "tags": ["Vercel", "Bref", "Claude", "Pluralsight", "Pulumi"]
       },
       {
         "name": "Programming Languages",
-        "tags": ["TypeScript", "JavaScript", "Python", "Ruby", "C#", "PHP", "Java"]
+        "tags": ["TypeScript", "JavaScript", "Python", "Ruby", "C#", "PHP", "Java", "Golang"]
       },
       {
         "name": "Technical Topics",
-        "tags": ["Performance", "Networking", "Storage", "CDN", "DNS", "Engineering", "Hiring", "Getting Started", "Tech Industry", "Cloud"]
+        "tags": ["Performance", "Networking", "Storage", "CDN", "DNS", "Load Balancing", "Engineering", "Hiring", "Getting Started", "Tech Industry", "Cloud"]
       }
     ],
     "mappings": {
@@ -377,6 +386,7 @@
       "Cost Optimization": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       "GCP": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       "Getting Started": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+      "Golang": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       "S3": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       "SageMaker": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
       "Storage": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
@@ -389,8 +399,10 @@
       "CloudWatch": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
       "Java": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
       "Lambda": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+      "Load Balancing": "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
       "Machine Learning": "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
       "Pluralsight": "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
+      "Pulumi": "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
       ".NET": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
       ".NET Framework": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
       "Blazor": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
@@ -412,6 +424,7 @@
       "Tech Industry": "bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-200",
       "IaC": "bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200",
       "DevOps": "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
+      "DigitalOcean": "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
       "Serverless": "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
       "Bref": "bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200",
       "Build Tool": "bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200",
