@@ -15,6 +15,15 @@
   ],
   "data": [
     {
+      "date": "2025-11-02",
+      "name": "Part 2: From $68/month to $5/month - The \"Lite\" Deployment Strategy",
+      "slug": "cgc-lite-deployment-strategy",
+      "source": "https://dev.to/wheeleruniverse/part-2-from-68month-to-5month-the-lite-deployment-strategy-1lah",
+      "sourceDisplayName": "Dev.to (Personal)",
+      "github": "https://github.com/wheeleruniverse/cgc-lb-and-cdn",
+      "tags": ["Cost Optimization", "DevOps", "GitHub Actions", "DigitalOcean", "Cloud Strategy"]
+    },
+    {
       "date": "2025-10-20",
       "name": "Better Late Than Never: Tackling the 2022 Cloud Portfolio Challenge in 2025",
       "slug": "cgc-lb-and-cdn",
