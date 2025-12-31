@@ -15,6 +15,14 @@
   ],
   "data": [
     {
+      "date": "2025-12-31",
+      "name": "How the Cloud Guru Challenge Transformed My Cloud Career: 11 Projects Across AWS, Azure, GCP, and Digital Ocean",
+      "slug": "cgc-transformed-me",
+      "source": "https://www.linkedin.com/pulse/how-cloud-guru-challenge-transformed-my-career-11-projects-wheeler-8odxc",
+      "sourceDisplayName": "LinkedIn",
+      "tags": ["AWS", "Azure", "GCP", "DigitalOcean", "Multi-Cloud", "Career Development", "Learning", "Certification", "Serverless", "Cloud Strategy", "Cost Optimization"]
+    },
+    {
       "date": "2025-11-02",
       "name": "Part 2: From $68/month to $5/month - The \"Lite\" Deployment Strategy",
       "slug": "cgc-lite-deployment-strategy",
